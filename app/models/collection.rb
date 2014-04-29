@@ -1,4 +1,4 @@
-class Category
+class Collection
   include Mongoid::Document
 
   embeds_many :products
