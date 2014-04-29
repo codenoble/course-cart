@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.0'
 
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'mongoid', '~> 4.0.0.beta1'
