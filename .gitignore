@@ -1,5 +1,5 @@
 /.bundle
 /config/mongoid.yml
+/config/settings.local.yml
 /log/*.log
 /tmp
-

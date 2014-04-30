@@ -1,0 +1,7 @@
+secret_token: # set in settings.local.yml
+
+banner:
+  connection_string: # set in settings.local.yml
+
+cas:
+  url: "https://login.biola.edu/cas"
