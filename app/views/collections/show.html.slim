@@ -1,5 +1,10 @@
 h1 = @collection.name
 
-ul
-  - @collection.products.each do |product|
-    li = product.name
+= form_for(@order) do |f|
+  ul
+    = f.fields_for(:purchases) do |fields|
+      li
+        = fields.check_box :product_id, {checked: false}, fields.object.product_id.to_s, nil
+        = fields.label :product_id, fields.object.product.name
+
+  button type="submit" Continue

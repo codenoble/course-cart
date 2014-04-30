@@ -1,0 +1,21 @@
+h1 Your Order
+
+table
+  thead
+    tr
+      th Product
+      th Price
+  tbody
+    - @order.purchases.each do |purchase|
+      tr
+        td = purchase.product
+        td = number_to_currency(purchase.product.price)
+  tfoot
+    tr
+      th Total:
+      td = number_to_currency(@order.total)
+
+form action=@upay.url method="post"
+  - @upay_parameters.each do |name, value|
+    input type="hidden" name=name value=value
+  button type="submit" Continue

@@ -2,3 +2,9 @@ secret_token: # run rake secret to generate this
 
 banner:
   connection_string: # "username/******@dbserver.example.com/PROD.example.com"
+
+touch_net:
+  upay_store_id:
+  context:
+  passed_amount_validation_key:
+  posting_key:
