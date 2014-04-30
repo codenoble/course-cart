@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to @order
     else
-      raise 'pry'
       redirect_to :back, alert: @order.errors.full_messages
     end
   end
