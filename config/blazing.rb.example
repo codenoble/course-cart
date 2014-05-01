@@ -1,6 +1,6 @@
-target :'ruby2.staging', 'johnd0@ruby2.staging.biola.edu:/srv/rails/course-cart', rails_env: 'staging'
-target :'ruby3a.prod',   'johnd0@ruby3a.prod.biola.edu:/srv/rails/course-cart',   rails_env: 'production'
-target :'ruby3a.prod',   'johnd0@ruby3a.prod.biola.edu:/srv/rails/course-cart',   rails_env: 'production'
+target :'ruby2.staging', 'johnd0@ruby2.staging.biola.edu:/srv/rack/course-cart', rails_env: 'staging'
+target :'ruby3a.prod',   'johnd0@ruby3a.prod.biola.edu:/srv/rack/course-cart',   rails_env: 'production'
+target :'ruby3a.prod',   'johnd0@ruby3a.prod.biola.edu:/srv/rack/course-cart',   rails_env: 'production'
 
 env_scripts '/etc/profile'
 
