@@ -1,5 +1,8 @@
 h1 Your Order
 
+- if @order.complete?
+  p Your order was completed on #{@order.payment.succeeded_at}
+
 table
   thead
     tr
@@ -15,7 +18,8 @@ table
       th Total:
       td = number_to_currency(@order.total)
 
-form action=@upay.url method="post"
-  - @upay_parameters.each do |name, value|
-    input type="hidden" name=name value=value
-  button type="submit" Continue
+- unless @order.complete?
+  form action=@upay.url method="post"
+    - @upay_parameters.each do |name, value|
+      input type="hidden" name=name value=value
+    button type="submit" Continue

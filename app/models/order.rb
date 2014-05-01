@@ -16,6 +16,10 @@ class Order
     purchases.map { |p| p.product.price }.sum
   end
 
+  def complete?
+    !!payment.try(:successful?)
+  end
+
   def to_s
     created_at.to_s
   end

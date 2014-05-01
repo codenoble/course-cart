@@ -8,6 +8,7 @@ class Payment
   field :status, type: Symbol
   field :tracking_id, type: Integer
   field :amount, type: BigDecimal
+  field :succeeded_at, type: DateTime
   # TODO: store all values from TouchNet
 
   validates :uuid, presence: true

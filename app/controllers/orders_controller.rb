@@ -6,15 +6,17 @@ class OrdersController < ApplicationController
 
     @order.create_payment unless @order.payment?
 
-    store_id = Settings.touch_net.upay_store_id
-    context = Settings.touch_net.context
-    passed_amount_validation_key = Settings.touch_net.passed_amount_validation_key
-    success_link = nil # TODO: production_url(@production, processed: @credit.transaction.uuid)
-    cancel_link =  nil # TODO: production_url(@production, cancelled: @credit.transaction.uuid)
-    production = Rails.env.production?
+    unless @order.complete?
+      store_id = Settings.touch_net.upay_store_id
+      context = Settings.touch_net.context
+      passed_amount_validation_key = Settings.touch_net.passed_amount_validation_key
+      success_link = order_url(@order)
+      cancel_link =  nil # TODO
+      production = Rails.env.production?
 
-    @upay = TouchNet::UPay.new(store_id, context, passed_amount_validation_key, production)
-    @upay_parameters = @upay.parameters_for(@order, success_link: success_link, cancel_link: cancel_link)
+      @upay = TouchNet::UPay.new(store_id, context, passed_amount_validation_key, production)
+      @upay_parameters = @upay.parameters_for(@order, success_link: success_link, cancel_link: cancel_link)
+    end
   end
 
   def create
