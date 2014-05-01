@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   def index
+    # TODO: limit by period
     @collections = Collection.all
   end
 
@@ -9,5 +10,7 @@ class CollectionsController < ApplicationController
     @collection.products.each do |product|
       @order.purchases.build product: product
     end
+
+    # TODO: render with layout
   end
 end
