@@ -13,6 +13,7 @@ class PaymentsController < ApplicationController
       payment.tpg_trans_id = params[:tpg_trans_id]
       payment.pmt_status = params[:pmt_status]
       payment.sys_tracking_id = params[:sys_tracking_id]
+      payment.pmt_amt = params[:pmt_amt]
       payment.succeeded_at = DateTime.now
       # TODO: store all params
       payment.save!
