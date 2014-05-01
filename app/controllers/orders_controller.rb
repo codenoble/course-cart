@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       passed_amount_validation_key = Settings.touch_net.passed_amount_validation_key
       success_link = order_url(@order)
       cancel_link =  nil # TODO
-      production = Rails.env.production?
+      production = Settings.touch_net.production || Rails.env.production?
 
       @upay = TouchNet::UPay.new(store_id, context, passed_amount_validation_key, production)
       @upay_parameters = @upay.parameters_for(@order, success_link: success_link, cancel_link: cancel_link)
