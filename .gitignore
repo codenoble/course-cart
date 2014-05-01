@@ -1,4 +1,5 @@
 /.bundle
+/config/blazing.rb
 /config/mongoid.yml
 /config/settings.local.yml
 /log/*.log

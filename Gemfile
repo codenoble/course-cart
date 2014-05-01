@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.0'
 
+gem 'biola_deploy'
+gem 'blazing'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
