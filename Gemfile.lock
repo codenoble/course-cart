@@ -94,6 +94,9 @@ GEM
     mongoid-grid_fs (2.1.0)
       mime-types (>= 1.0, < 3.0)
       mongoid (>= 3.0, < 5.0)
+    mongoid_slug (3.2.1)
+      mongoid (> 3.0)
+      stringex (~> 2.0)
     moped (2.0.0.rc1)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -163,6 +166,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stringex (2.5.2)
     temple (0.6.7)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -193,6 +197,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jquery-rails
   mongoid (~> 4.0.0.beta1)
+  mongoid_slug
   newrelic_rpm
   rack-cas
   rails (= 4.1.0)
