@@ -13,7 +13,7 @@ module CourseCart
   class Application < Rails::Application
     config.time_zone = 'Pacific Time (US & Canada)'
 
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/validators)
     config.i18n.default_locale = :en
   end
 end

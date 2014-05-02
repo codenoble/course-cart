@@ -7,6 +7,7 @@ class Offering
   field :name, type: String
   field :period, type: Range # Times
   field :layout, type: Symbol
+  field :order_validators, type: Array
 
   validates :name, presence: true, uniqueness: true
 

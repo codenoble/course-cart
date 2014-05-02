@@ -13,8 +13,8 @@ class Order
 
   validates :user, presence: true
   validates :offering, presence: true
+  validate :validations_from_offering
   # TODO: validate at least one purchase
-  # TODO: validate rules
 
   def total
     purchases.map { |p| p.product.price }.sum
@@ -32,5 +32,11 @@ class Order
 
   def set_offering
     self.offering = purchases.first.try(:offering)
+  end
+
+  def validations_from_offering
+    Array(offering.order_validators).each do |validator|
+      validates_with validator.constantize
+    end
   end
 end
