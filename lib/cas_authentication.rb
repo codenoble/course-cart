@@ -49,6 +49,7 @@ class CasAuthentication
   end
 
   def update_extra_attributes!
+    user.id_number    = extra_attr(:employeeId)
     user.first_name   = extra_attr(:eduPersonNickname)
     user.last_name    = extra_attr(:sn)
     user.email        = extra_attr(:mail)

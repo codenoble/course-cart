@@ -3,6 +3,7 @@ class User
 
   has_many :orders
   field :username, type: String
+  field :id_number, type: Integer
   field :first_name, type: String
   field :last_name, type: String
   field :email, type: String
