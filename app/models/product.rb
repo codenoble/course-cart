@@ -1,7 +1,7 @@
 class Product
   include Mongoid::Document
 
-  has_and_belongs_to_many :collections
+  belongs_to :offering
   field :name, type: String
   field :price, type: BigDecimal
   mount_uploader :photo, PhotoUploader

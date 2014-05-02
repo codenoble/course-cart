@@ -1,8 +1,9 @@
-class Collection
+class Offering
   include Mongoid::Document
   include Mongoid::Slug
 
-  has_and_belongs_to_many :products
+  has_many :products
+  has_many :orders
   field :name, type: String
   field :period, type: Range # Times
   field :layout, type: Symbol
