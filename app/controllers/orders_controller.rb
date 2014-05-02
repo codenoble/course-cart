@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @layout = @order.offering.layout
 
     @order.create_payment unless @order.payment?
 

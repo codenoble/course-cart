@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate!
 
+  layout -> { (@layout || :application).to_s }
+
   helper_method :current_user
   def current_user
     authentication.user
