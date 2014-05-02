@@ -12,6 +12,7 @@ gem 'mongoid_slug'
 gem 'newrelic_rpm'
 gem 'rack-cas'
 gem 'rails_config'
+gem 'ruby-oci8'
 gem 'sass-rails', '~> 4.0.3'
 gem 'slim'
 gem 'therubyracer',  platforms: :ruby

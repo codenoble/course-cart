@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to @order
     else
-      redirect_to :back, alert: @order.errors.full_messages
+      redirect_to @order.offering, alert: @order.errors.full_messages.to_sentence
     end
   end
 
