@@ -1,9 +1,10 @@
 require 'oci8'
 
-class IncomingFreshmanValidator < ActiveModel::Validator
+class SmartStartEligibilityValidator < ActiveModel::Validator
   def validate(record)
     id_number = record.user.id_number.to_s.rjust(8, '0')
     conn = OCI8.new(Settings.banner.connection_string)
+    # TODO: check term
     cursor = conn.exec('SELECT id FROM bsv_smartstart WHERE id = :1', id_number)
     row = cursor.fetch
 
