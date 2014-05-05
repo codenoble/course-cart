@@ -14,7 +14,7 @@ class Order
   validates :user, presence: true
   validates :offering, presence: true, uniqueness: {scope: :user}
   validate :validations_from_offering
-  # TODO: validate at least one purchase
+  validates :purchases, length: { minimum: 1}
 
   def total
     purchases.map { |p| p.product.price }.sum
