@@ -12,7 +12,7 @@ class Order
   before_validation :set_offering
 
   validates :user, presence: true
-  validates :offering, presence: true
+  validates :offering, presence: true, uniqueness: {scope: :user}
   validate :validations_from_offering
   # TODO: validate at least one purchase
 
