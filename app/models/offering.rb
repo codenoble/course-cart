@@ -13,5 +13,17 @@ class Offering
 
   slug :name
 
+  scope :open, -> do
+    now = Time.now
+    # TODO: test me
+    scoped.
+      or(:'period.min'.lt => now, :'period.max'.gt => now).
+      or(:'period.min'.lt => now, :'period.max' => nil)
+  end
+
+  def open?
+    period == (nil..nil) || period.cover?(Time.now)
+  end
+
   alias :to_s :name
 end

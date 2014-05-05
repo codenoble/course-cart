@@ -13,8 +13,9 @@ class Order
 
   validates :user, presence: true
   validates :offering, presence: true, uniqueness: {scope: :user}
-  validate :validations_from_offering
   validates :purchases, length: { minimum: 1}
+  validate :offering_open, on: :create
+  validate :validations_from_offering
 
   def total
     purchases.map { |p| p.product.price }.sum
@@ -32,6 +33,10 @@ class Order
 
   def set_offering
     self.offering = purchases.first.try(:offering)
+  end
+
+  def offering_open
+    errors.add(:offering, 'is not open') unless offering.open?
   end
 
   def validations_from_offering

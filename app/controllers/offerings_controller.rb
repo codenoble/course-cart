@@ -1,7 +1,6 @@
 class OfferingsController < ApplicationController
   def index
-    # TODO: limit by period
-    @offerings = Offering.all
+    @offerings = Offering.open
   end
 
   def show
