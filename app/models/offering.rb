@@ -13,6 +13,7 @@ class Offering
 
   slug :name
 
+  # NOTE: be sure to store times in UTC or you'll have offset issues
   scope :open, -> do
     now = Time.now
     # TODO: test me

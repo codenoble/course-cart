@@ -1,5 +1,6 @@
 class Product
   include Mongoid::Document
+  include Mongoid::Slug
 
   belongs_to :offering
   field :name, type: String
@@ -8,6 +9,8 @@ class Product
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
+
+  slug :name
 
   alias :to_s :name
 end
