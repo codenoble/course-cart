@@ -22,7 +22,7 @@ class Offering
   end
 
   def open?
-    period == (nil..nil) || period.cover?(Time.now)
+    period.nil? || period == (nil..nil) || period.cover?(Time.now)
   end
 
   alias :to_s :name
