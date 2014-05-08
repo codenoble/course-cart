@@ -34,7 +34,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    biola_deploy (0.6.1)
+    biola_deploy (0.6.2)
     blazing (0.4.1)
       activesupport
       grit
