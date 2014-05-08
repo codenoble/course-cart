@@ -1,11 +1,17 @@
--binding.pry
 h1 = @offering.name
 
-= form_for(@order) do |f|
-  ul
-    = f.fields_for(:purchases) do |fields|
-      li
-        = fields.check_box :product_id, {checked: fields.object.slug == params[:product]}, fields.object.product_id.to_s, nil
-        = fields.label :product_id, fields.object.product.name
+- if @order.preflight_passed?
+  = form_for(@order) do |f|
+    ul
+      = f.fields_for(:purchases) do |fields|
+        li
+          = fields.check_box :product_id, {checked: fields.object.slug == params[:product]}, fields.object.product_id.to_s, nil
+          = fields.label :product_id, fields.object.product.name
 
-  button type="submit" Continue
+    button type="submit" Continue
+
+- else
+  h2 Unable to continue
+  ul
+    - @order.errors.full_messages.each do |message|
+      li = message
