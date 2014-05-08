@@ -9,7 +9,7 @@ class SmartStartEligibilityValidator < ActiveModel::Validator
     row = cursor.fetch
 
     unless row.try(:first) == id_number
-      record.errors[:base] << 'You are not an incoming freshman'
+      record.errors[:base] << 'You are not eligible for Smart Start classes'
     end
 
     cursor.close
