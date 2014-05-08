@@ -6,5 +6,5 @@ class Purchase
 
   validates :product, presence: true
 
-  delegate :offering, to: :product, allow_nil: true
+  delegate :offering, :slug, to: :product, allow_nil: true
 end
