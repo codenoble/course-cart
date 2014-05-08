@@ -15,7 +15,12 @@ class Order
   validates :offering, presence: true, uniqueness: {scope: :user}
   validates :purchases, length: { minimum: 1}
   validate :offering_open, on: :create
-  validate :validations_from_offering
+  validate :preflight_checks, on: :preflight
+  validate :validations_from_offering, on: [:create, :update]
+
+  def preflight_passed?
+    valid? :preflight
+  end
 
   def total
     purchases.map { |p| p.product.price }.sum
@@ -37,6 +42,12 @@ class Order
 
   def offering_open
     errors.add(:offering, 'is not open') unless offering.open?
+  end
+
+  def preflight_checks
+    Array(offering.preflight_checks).each do |validator|
+      validates_with validator.constantize
+    end
   end
 
   def validations_from_offering
