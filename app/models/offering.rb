@@ -19,6 +19,7 @@ class Offering
     now = Time.now
     # TODO: test me
     scoped.
+      or(period: nil).
       or(:'period.min'.lt => now, :'period.max'.gt => now).
       or(:'period.min'.lt => now, :'period.max' => nil)
   end
