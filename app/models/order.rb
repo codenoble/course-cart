@@ -22,18 +22,23 @@ class Order
   scope :cancelled, -> { where(:cancelled_at.ne => nil) }
   scope :uncancelled, -> { where(cancelled_at: nil) }
 
-  alias :cancelled? :cancelled_at?
 
   def preflight_passed?
     valid? :preflight
   end
 
-  def total
-    purchases.map { |p| p.product.price }.sum
+  def open?
+    !complete? && !cancelled?
   end
+
+  alias :cancelled? :cancelled_at?
 
   def complete?
     !!payment.try(:successful?)
+  end
+
+  def total
+    purchases.map { |p| p.product.price }.sum
   end
 
   def to_s

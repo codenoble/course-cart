@@ -3,6 +3,9 @@ h1 Your Order
 - if @order.complete?
   p Your order was completed on #{@order.payment.succeeded_at}
 
+- if @order.cancelled?
+  p Your order was cancelled on #{@order.cancelled_at}
+
 table
   thead
     tr
@@ -18,7 +21,7 @@ table
       th Total:
       td = number_to_currency(@order.total)
 
-- unless @order.complete?
+- if @order.open?
   = form_for @order, method: :delete
     button type="submit" Cancel
 
@@ -26,3 +29,6 @@ table
     - @upay_parameters.each do |name, value|
       input type="hidden" name=name value=value
     button type="submit" Continue
+
+- elsif @order.cancelled?
+  = link_to 'Back', @order.offering
