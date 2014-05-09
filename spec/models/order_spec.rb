@@ -19,4 +19,17 @@ describe Order do
     let(:offering_attrs) { {order_validators: ['YesManValidator']} }
     it { should be_valid }
   end
+
+  describe '#valid?' do
+    context 'with order incomplete and cancelled_at set' do
+      let(:order) { build :order, :with_purchase, cancelled_at: Time.now }
+      it { should be_valid }
+    end
+
+    context 'with order complete and cancelled_at set' do
+      let(:payment) { build(:payment, :successful) }
+      let(:order) { build :order, :with_purchase, cancelled_at: Time.now, payment: payment }
+      it { should be_invalid }
+    end
+  end
 end

@@ -15,6 +15,7 @@ class Order
   validates :user, presence: true
   validates :offering, presence: true, uniqueness: {scope: :user, conditions: -> { where(cancelled_at: nil) }}
   validates :purchases, length: { minimum: 1, message: 'is empty. Please select at least one product.'}
+  validates :cancelled_at, absence: {:if => -> order { order.complete? }}
   validate :offering_open, on: :create
   validate :preflight_checks, on: :preflight
   validate :validations_from_offering, on: [:create, :update]
