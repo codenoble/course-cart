@@ -19,6 +19,9 @@ table
       td = number_to_currency(@order.total)
 
 - unless @order.complete?
+  = form_for @order, method: :delete
+    button type="submit" Cancel
+
   form action=@upay.url method="post"
     - @upay_parameters.each do |name, value|
       input type="hidden" name=name value=value

@@ -6,17 +6,23 @@ class Order
   belongs_to :offering
   embeds_many :purchases
   embeds_one :payment
+  field :cancelled_at, type: Time
 
   accepts_nested_attributes_for :purchases, reject_if: -> (hash) { hash[:product_id].blank? }
 
   before_validation :set_offering
 
   validates :user, presence: true
-  validates :offering, presence: true, uniqueness: {scope: :user}
-  validates :purchases, length: { minimum: 1}
+  validates :offering, presence: true, uniqueness: {scope: :user, conditions: -> { where(cancelled_at: nil) }}
+  validates :purchases, length: { minimum: 1, message: 'is empty. Please select at least one product.'}
   validate :offering_open, on: :create
   validate :preflight_checks, on: :preflight
   validate :validations_from_offering, on: [:create, :update]
+
+  scope :cancelled, -> { where(:cancelled_at.ne => nil) }
+  scope :uncancelled, -> { where(cancelled_at: nil) }
+
+  alias :cancelled? :cancelled_at?
 
   def preflight_passed?
     valid? :preflight
@@ -37,7 +43,7 @@ class Order
   private
 
   def set_offering
-    self.offering = purchases.first.try(:offering)
+    self.offering = purchases.first.try(:offering) || self.offering
   end
 
   def offering_open

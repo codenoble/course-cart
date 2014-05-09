@@ -5,7 +5,7 @@ class OfferingsController < ApplicationController
 
   def show
     @offering = Offering.find(params[:id])
-    @order = Order.find_or_initialize_by(user: current_user, offering: @offering)
+    @order = Order.find_or_initialize_by(user: current_user, offering: @offering, cancelled_at: nil)
     @layout = @offering.layout
 
     if @order.persisted?

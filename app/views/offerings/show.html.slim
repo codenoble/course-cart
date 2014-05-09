@@ -2,6 +2,7 @@ h1 = @offering.name
 
 - if @order.preflight_passed?
   = form_for(@order) do |f|
+    = f.hidden_field :offering_id
     ul
       = f.fields_for(:purchases) do |fields|
         li

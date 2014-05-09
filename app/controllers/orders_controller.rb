@@ -32,9 +32,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    @order.update cancelled_at: Time.now
+    redirect_to @order.offering
+  end
+
   private
 
   def order_params
-    params.require(:order).permit(purchases_attributes: :product_id)
+    params.require(:order).permit(:offering_id, purchases_attributes: :product_id)
   end
 end
