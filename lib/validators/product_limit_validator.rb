@@ -1,5 +1,3 @@
-require 'oci8'
-
 class ProductLimitValidator < ActiveModel::Validator
   include ActionView::Helpers::TextHelper
 
