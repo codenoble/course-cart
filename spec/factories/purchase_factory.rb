@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :purchase do
-    order
+    order { build :order }
     product
   end
 end
