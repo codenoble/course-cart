@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       context = Settings.touch_net.context
       passed_amount_validation_key = Settings.touch_net.passed_amount_validation_key
       success_link = order_url(@order)
-      cancel_link =  nil # TODO
+      cancel_link =  offering_url(@order.offering, product: @order.purchases.first.product.slug)
       production = Settings.touch_net.production
       production = Rails.env.production? if production.nil?
 

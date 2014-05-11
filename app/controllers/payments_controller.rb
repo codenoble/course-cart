@@ -19,10 +19,18 @@ class PaymentsController < ApplicationController
       payment.save!
 
     when 'cancelled'
-      # TODO
+      order.cancelled_at = Time.now
+      order.payment.pmt_status = params[:pmt_status]
+      order.save!
     end
 
-    render text: 'success'
+    response = order.errors.empty?
+      'success'
+    else
+      "error: #{order.errors.full_messages.to_sentence}"
+    end
+
+    render text: response
   end
 
   private
