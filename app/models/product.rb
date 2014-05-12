@@ -4,6 +4,7 @@ class Product
 
   belongs_to :offering
   field :name, type: String
+  field :description, type: String
   field :price, type: BigDecimal
   field :available, type: Integer
   mount_uploader :photo, PhotoUploader
