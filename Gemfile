@@ -33,3 +33,7 @@ group :test do
   gem 'factory_girl'
   gem 'faker'
 end
+
+group :staging, :production do
+  gem 'rack-ssl', require: 'rack/ssl'
+end
