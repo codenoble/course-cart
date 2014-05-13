@@ -8,7 +8,7 @@ html
     meta content="width=device-width, initial-scale=1.0" name="viewport"
 
     link rel="stylesheet" href="http://use.typekit.net/c/97e09a/minion-pro:i4:i7:n4:n7,proxima-nova:i4:i7:n4:n7.XvF:N:2,XvD:N:2,XvJ:N:2,XvC:N:2,W0W:N:2,W0Z:N:2,W0V:N:2,W0Y:N:2/d?3bb2a6e53c9684ffdc9a9bf2195b2a62ec19c67c2541de178ac90e67dc909437e68ec090dbcc2c920c54e60af2cc4a8c8a2ba18e212b59e977811c198d2e146c31915e98bfb74f220afa96ef166ca197e1006a11f6bb6e616f65825880852f3d76c2f1647e9308921601dfb94078c2058223025f23d6ccff9efafb5ebb3a4c01cc78a84d7b95b5c7baa975a589bae8"
-    = stylesheet_link_tag "application", media: "all"
+    = stylesheet_link_tag "admin/application", media: "all"
     = stylesheet_link_tag "biola/header", media: "all"
 
     = csrf_meta_tag
@@ -74,7 +74,7 @@ html
       = yield
 
     footer#footer
-    = javascript_include_tag "application"
+    = javascript_include_tag "admin/application"
   = javascript_include_tag "biola/header"
     = yield :extra_javascript
 
