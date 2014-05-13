@@ -23,6 +23,9 @@ class Order
   scope :cancelled, -> { where(:cancelled_at.ne => nil) }
   scope :uncancelled, -> { where(cancelled_at: nil) }
 
+  scope :paid, -> { where('payment.status' => :successful ) }
+  scope :pending_payment, -> { where('payment.gateway_transaction_id' => nil) }
+
 
   def preflight_passed?
     valid? :preflight
@@ -36,6 +39,10 @@ class Order
 
   def complete?
     !!payment.try(:successful?)
+  end
+
+  def pending_payment?
+    !!payment.try(:pending?)
   end
 
   def total

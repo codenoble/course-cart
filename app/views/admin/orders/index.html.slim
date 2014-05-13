@@ -8,7 +8,10 @@
         = render 'table', orders: @orders
     .col-md-3
       ul.nav.nav-list.well
-        = nav_list_header 'Fake', :status
-        = nav_list_link 'These', :status, 'scheduled'
-        = nav_list_link 'Do not', :status, 'sent'
-        = nav_list_link 'Work', :status, 'failed'
+        = nav_list_header 'Cancelled?', :cancelled
+        = nav_list_link 'Yes', :cancelled, true
+        = nav_list_link 'No', :cancelled, false
+
+        = nav_list_header 'Order Status', :status
+        = nav_list_link 'Pending Payment', :status, 'pending_payment'
+        = nav_list_link 'Paid', :status, 'paid'

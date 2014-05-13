@@ -1,10 +1,12 @@
 .row
-  table.table.table-striped.table-hover
+  table.table.table-striped.table-hover.table-responsive
     thead
       tr
         th Name
         th Email
         th Offer
+        th Status
+        th Cancelled?
 
     tbody
       - orders.each do |order|
@@ -12,4 +14,11 @@
           td = link_to order.user.name, admin_order_path(order)
           td = order.user.email
           td = order.offering.name
+          - if order.pending_payment?
+            td Pending Payment
+          - elsif order.complete?
+            td Paid
+          - else
+            td
+          td = order.cancelled? ? "Yes" : ""
   .text-center = paginate orders
