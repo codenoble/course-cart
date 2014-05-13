@@ -1,0 +1,14 @@
+.container.page
+  .row
+    .col-md-9
+      .white-shadowed-panel
+        .page-header
+          h2 Orders
+
+        = render 'table', orders: @orders
+    .col-md-3
+      ul.nav.nav-list.well
+        = nav_list_header 'Fake', :status
+        = nav_list_link 'These', :status, 'scheduled'
+        = nav_list_link 'Do not', :status, 'sent'
+        = nav_list_link 'Work', :status, 'failed'

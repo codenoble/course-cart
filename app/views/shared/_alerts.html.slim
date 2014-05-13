@@ -1,0 +1,7 @@
+- unless (alerts = all_alerts).empty?
+  #message_list
+    - alerts.each do |msg|
+      div.alert class=alert_class(msg[:type]) data-type=msg[:type]
+        a.close data-dismiss="alert" href="#" &times;
+        i> class=alert_icon(msg[:type])
+        = msg[:message]

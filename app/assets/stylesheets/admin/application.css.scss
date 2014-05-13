@@ -1,0 +1,60 @@
+/*
+ *= require font-awesome
+ *= require bootstrap
+ *= requre custom_bootstrap
+ *= require_self
+ *= require_tree ./resources
+ */
+
+.small-lead { font-size: 15px; margin-bottom: 0px; }
+.page-lead { margin-bottom: 0; }
+.text-disabled { color: #999; }
+
+#message_list { margin-top: 10px; }
+
+@mixin baskerville() { font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif; }
+$biola-red: #CE1126;
+
+html, body { min-height: 100%; }
+
+#header { }  // Should use shared biola header.css
+
+#body { background-color: #F4EEE5; padding-bottom: 40px; position: relative; z-index: 0;
+  .container.page { margin: 20px auto; }
+  .white-shadowed-panel { background: white; border-bottom: 1px solid #ddd; padding: 15px; border-radius: 4px; box-shadow: -1px -1px 6px -3px rgba(0,0,0,.5);
+    &.no-pad { padding: 0px; }
+    .page-header { margin-top: 0px; padding-bottom: 15px;
+      h1, h2, h3 { @include baskerville; margin: 0; }
+    }
+
+    form {
+      .form-section { padding: 20px; }
+      .form-footer { padding: 20px; background-color: #fafafa; border-top: 1px solid #ddd; border-radius: 0 0 5px 5px; }
+      h1, h2, h3 { @include baskerville; }
+      h2 { margin: 0; padding: 20px; border-bottom: 1px solid #ddd; }
+      h3 { text-align: center; padding: 5px; border: 1px dotted #ccc; border-width: 1px 0; background-color: #fafafa; margin: 30px 0 0 0; }
+    }
+
+    table.dl {
+      th, td { padding: 8px 5px; vertical-align: top; }
+      th { text-align: right; min-width: 140px; padding-right: 10px; }
+
+      @media (max-width: 500px) {
+        th { display: block; text-align: left; padding-bottom: 0; }
+        td { display: block; padding-top: 0; width: 100%; }
+      }
+    }
+  }
+}
+
+
+body { background-image: image-url('footer_map.png'); background-repeat: no-repeat; background-position: bottom; }
+#footer { padding: 20px 0; box-shadow: 0 -5px 12px -9px rgba(0, 0, 0, 0.5);
+  background-image: image-url('footer_content.png'); background-repeat: no-repeat; min-height: 180px; background-position: top;
+}
+
+
+
+.btn-biola { color: white; background-color: $biola-red; border-color: #B60216;
+  &:hover  { color: white; background-color: #B60216; border-color: #A00516; }
+}

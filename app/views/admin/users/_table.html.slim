@@ -1,0 +1,13 @@
+.row
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th Name
+        th Email
+
+    tbody
+      - users.each do |user|
+        tr
+          td = link_to user.name, admin_user_path(user)
+          td = user.email
+  .text-center = paginate users

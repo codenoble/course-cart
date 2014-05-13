@@ -1,0 +1,80 @@
+doctype html
+html
+  head
+    title = "Biola #{Settings.app.name}"
+    / = yield :page_title || "Biola University - Profile Publisher"
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+    link rel="stylesheet" href="http://use.typekit.net/c/97e09a/minion-pro:i4:i7:n4:n7,proxima-nova:i4:i7:n4:n7.XvF:N:2,XvD:N:2,XvJ:N:2,XvC:N:2,W0W:N:2,W0Z:N:2,W0V:N:2,W0Y:N:2/d?3bb2a6e53c9684ffdc9a9bf2195b2a62ec19c67c2541de178ac90e67dc909437e68ec090dbcc2c920c54e60af2cc4a8c8a2ba18e212b59e977811c198d2e146c31915e98bfb74f220afa96ef166ca197e1006a11f6bb6e616f65825880852f3d76c2f1647e9308921601dfb94078c2058223025f23d6ccff9efafb5ebb3a4c01cc78a84d7b95b5c7baa975a589bae8"
+    = stylesheet_link_tag "application", media: "all"
+    = stylesheet_link_tag "biola/header", media: "all"
+
+    = csrf_meta_tag
+    = yield :extra_headers
+  body
+    #header
+      #wrapperBiolaHeader
+        #biolaHeader
+          h2.branding
+            a.logo href="http://www.biola.edu"
+              img> src="http://academics.biola.edu/static/biola/header-slim/images/logo-biola-mark-white.png" alt=""
+              | Biola U
+              span.university niversity
+
+          #current-user-profile.dropdown
+            a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
+              #profile-img style="background-image: url('#{current_user.photo_url}')"
+            ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
+              li = link_to "#{fa_icon('user')} My Account".html_safe, '#'
+              li = link_to "#{fa_icon('power-off')} Logout".html_safe, '#'
+
+          #apps-list.dropdown
+            a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
+              span.desktop
+                =' Settings.app.name || "Unknown application"
+                = show_environment
+                i.fa.fa-caret-down<
+              span.mobile
+                i.fa.fa-list.app-list-icon
+                i.fa.fa-caret-down
+            ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
+              li
+                i.bookmark.fa.fa-bookmark
+                = link_to 'Gmail', '#'
+              li
+                i.bookmark.fa.fa-bookmark
+                = link_to 'Timecard', '#'
+              li
+                i.bookmark.fa.fa-bookmark
+                = link_to 'Forms', '#'
+              li
+                i.bookmark.fa.fa-bookmark-o
+                = link_to 'Digital Signage', '#'
+              li
+                i.bookmark.fa.fa-bookmark-o
+                = link_to 'Classifieds', '#'
+              li.divider
+              li.text-center = link_to 'More', '#'
+
+      #wrapperBiolaSubHeader
+        #biolaSubHeader
+          .overflow_wrapper
+            .container
+              ul.nav-list.nav-main
+                li.descendant = link_to 'Orders', admin_orders_path
+                li.descendant = link_to 'Users', admin_users_path
+
+
+    #body
+      .container
+        = render 'shared/alerts'
+
+      = yield
+
+    footer#footer
+    = javascript_include_tag "application"
+  = javascript_include_tag "biola/header"
+    = yield :extra_javascript
+

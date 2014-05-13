@@ -1,0 +1,64 @@
+#wrapperBiolaHeader { background:#111; width:100%; }
+
+#biolaHeader { margin:0 auto; padding:0 15px; height: 42px; }
+#biolaHeader a { text-decoration:none; color:#FFF; }
+#biolaHeader .dropdown-toggle { -webkit-user-select: none; }
+#biolaHeader .dropdown-menu { top: 105%; }
+#biolaHeader .dropdown-menu a { color:inherit; }
+#biolaHeader .dropdown-menu a i { margin-right: 8px; }
+#biolaHeader .dropdown-menu i.bookmark { position: absolute; right: 0px; padding: 6px 13px 5px 8px; margin: 0; }
+#biolaHeader .branding,
+#biolaHeader #apps-list > a { height:42px; line-height:42px; margin:0; }
+
+#biolaHeader .branding { float:left; font-weight:bold; font-size:13px; font-family:'proxima-nova',Helvetica,Arial,sans-serif; text-transform:uppercase; letter-spacing:0.25em; }
+#biolaHeader .branding img { width:22px; height:22px; vertical-align:top; display:inline-block; margin:0.75em 0.5em 0 0; }
+#biolaHeader .branding .university { display: none; }
+
+#biolaHeader #apps-list { display:block; float:right; font-size:12px; }
+#biolaHeader #apps-list > a .desktop { display:none; }
+#biolaHeader #apps-list > a .mobile i.fa { padding-right: 10px; vertical-align: middle; }
+#biolaHeader #apps-list > a .mobile .app-list-icon { font-size: 18px; }
+
+#biolaHeader #current-user-profile { float: right; padding: 6px 0; display: inline-block; font-weight: normal; text-align: center; vertical-align: middle; cursor: pointer; -webkit-user-select: none; }
+#biolaHeader #current-user-profile #profile-img { height: 30px; width: 30px; background-position: center; background-repeat: no-repeat; background-size: cover; border-radius: 20px; display: inline-block; vertical-align: middle; margin-left: 10px; }
+#biolaHeader #current-user-profile .dropdown-menu { text-align: left; }
+
+#wrapperBiolaSubHeader { background: white; }
+
+#biolaSubHeader { border-bottom: 1px solid #ddd; overflow-x: auto; }
+#biolaSubHeader .overflow_wrapper { padding: 20px 0; }
+#biolaSubHeader .nav-main { font-size: 1.35em; font-weight: bold; clear: left;  display: block; list-style: none; margin: 0; padding: 0; font-family: 'proxima-nova',Helvetica,Arial,sans-serif; white-space: nowrap; }
+#biolaSubHeader .nav-main li { display: inline-block; position: relative; margin-top: 4px; margin-left: 1.3em; }
+#biolaSubHeader .nav-main li:first-child { margin-left: 0; }
+#biolaSubHeader .nav-main li:last-child { margin-right: 1.3em }
+#biolaSubHeader .nav-main li a { color: #3E4A66; border: 0 solid #FFF; }
+
+/* For mobile overflow - work in progress, we may not end up using this... */
+#biolaSubHeader.left-shadow { background: linear-gradient(to right, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 12%,rgba(0,0,0,0) 100%); }
+#biolaSubHeader.right-shadow { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 90%,rgba(0,0,0,0.1) 100%); }
+#biolaSubHeader.left-shadow.right-shadow { background: linear-gradient(to right, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 12%,rgba(0,0,0,0) 90%,rgba(0,0,0,0.1) 100%); }
+
+@media screen and (min-width:360px) {
+  #biolaHeader .branding .university { display: inline; }
+}
+
+@media screen and (min-width:549px) {
+  #biolaHeader #apps-list > a .mobile { display:none; }
+  #biolaHeader #apps-list > a .desktop { display:block; text-align:center; line-height:40px; padding:0 8px; color:#CCC; cursor:pointer; background:transparent; border:0; outline:0; -webkit-appearance:none; }
+  #biolaHeader #apps-list > a .desktop .version { padding: 0 5px; font-size: 10px; }
+  #biolaHeader #apps-list > a .desktop .label { margin-right: 5px; }
+}
+
+@media screen and (min-width:768px) {
+  #biolaHeader { width:750px; }
+}
+
+@media screen and (min-width:992px) {
+  #biolaHeader { width:970px; }
+}
+
+@media screen and (min-width:1200px) {
+  #biolaHeader { width:1170px; }
+}
+
+
