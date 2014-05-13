@@ -15,10 +15,21 @@
  *= require_self
  */
 
-
 .lead {
   font-size: 21px;
   font-weight: 200;
   line-height: 1.4;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.btn-purple {
+  color: #ffffff;
+  background-color: #8A55A3;
+  border-color: #86419B;
+ }
+
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active, .btn-purple.active, .open .dropdown-toggle.btn-purple {
+  color: #ffffff;
+  background-color: #77488D;
+  border-color: #6F2785;
 }

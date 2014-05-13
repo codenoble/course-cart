@@ -1,10 +1,22 @@
-h1 Your Order
+h1 Smart Start Registration
+h2 = "Dear " + current_user.name
+.lead style="font-size: 15px;" We’re excited that you have decided to join us for this online education experience!
+.lead style="font-size: 15px;" Please confirm your registration below.
+
 
 - if @order.complete?
   p Your order was completed on #{@order.payment.succeeded_at}
 
 - if @order.cancelled?
   p Your order was cancelled on #{@order.cancelled_at}
+
+h2 Registrant Information
+dl.dl-horizontal.lead style="font-size: 15px;"
+  dt Name:
+  dd = current_user.name
+  dt Email:
+  dd = current_user.email
+h2 Course Price
 
 table
   thead
@@ -22,13 +34,13 @@ table
       td = number_to_currency(@order.total)
 
 - if @order.open?
-  = form_for @order, method: :delete
-    button type="submit" Cancel
+  .pull-left= form_for @order, method: :delete
+    button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
 
-  form action=@upay.url method="post"
+  form action=@upay.url method="post" class="pull-left"
     - @upay_parameters.each do |name, value|
       input type="hidden" name=name value=value
-    button type="submit" Continue
+    button type="submit" class="btn btn-purple" Finalize Registration
 
 - elsif @order.cancelled?
   = link_to 'Back', @order.offering
