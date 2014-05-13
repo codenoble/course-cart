@@ -6,6 +6,7 @@
  *= require_tree ./resources
  */
 
+.nav > li > a {padding: 5px 15px;}
 .small-lead { font-size: 15px; margin-bottom: 0px; }
 .page-lead { margin-bottom: 0; }
 .text-disabled { color: #999; }
