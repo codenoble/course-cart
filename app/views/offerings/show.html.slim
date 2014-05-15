@@ -17,6 +17,5 @@ p.lead = "Thank you for your interest in " + @offering.name
 
 - else
   h2 Unable to continue
-  ul
-    - @order.errors.full_messages.each do |message|
-      li = message
+  - @order.errors.full_messages.each do |message|
+    div.errorsNotice = message
