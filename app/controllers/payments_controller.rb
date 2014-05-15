@@ -24,7 +24,7 @@ class PaymentsController < ApplicationController
       order.save!
     end
 
-    response = order.errors.empty?
+    response = if order.errors.empty?
       'success'
     else
       "error: #{order.errors.full_messages.to_sentence}"
