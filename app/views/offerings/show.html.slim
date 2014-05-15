@@ -5,13 +5,14 @@ p.lead = "Thank you for your interest in " + @offering.name
   = form_for(@order) do |f|
     h3 Registration
     = f.hidden_field :offering_id
-    ul
+    ul.products
       = f.fields_for(:purchases) do |fields|
         li style="list-style: none;"
-          = fields.check_box :product_id, {checked: fields.object.slug == params[:product]}, fields.object.product_id.to_s, nil
-          strong =' fields.label :product_id, fields.object.product.name
-          | ,
-          = fields.object.product.description
+          =' fields.check_box :product_id, {checked: fields.object.slug == params[:product]}, fields.object.product_id.to_s, nil
+          = fields.label :product_id do
+            strong = fields.object.product.name
+            br
+            = fields.object.product.description
 
     button type="submit" class="btn btn-default" Continue
 
