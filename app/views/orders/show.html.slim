@@ -5,10 +5,10 @@ h2 = "Dear " + current_user.name
 
 
 - if @order.complete?
-  p Your order was completed on #{@order.payment.succeeded_at}
+  p.info Your order was completed on #{@order.payment.succeeded_at}
 
 - if @order.cancelled?
-  p Your order was cancelled on #{@order.cancelled_at}
+  p.warning Your order was cancelled on #{@order.cancelled_at}
 
 h2 Registrant Information
 dl.dl-horizontal.lead style="font-size: 15px;"

@@ -25,9 +25,23 @@
   <link rel="stylesheet" href="//media.biola.edu/undergrad/static/smartstart/main.css?v=1" type="text/css" media="screen" />
 
   <style>
-    .errorsNotice {
+    p.error {
       background: none repeat scroll 0 0 #FFCCCC;
       border: 1px solid #FF7777;
+      margin: 5px 10px 10px;
+      padding: 10px 0 10px 10px;
+    }
+
+    p.info {
+      background: none repeat scroll 0 0 #CCFFCC;
+      border: 1px solid #77FF77;
+      margin: 5px 10px 10px;
+      padding: 10px 0 10px 10px;
+    }
+
+    p.warning {
+      background: none repeat scroll 0 0 #FFEEAA;
+      border: 1px solid #FFCC00;
       margin: 5px 10px 10px;
       padding: 10px 0 10px 10px;
     }
@@ -90,7 +104,7 @@
 
 <div class="grid-12">
   <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: "errorsNotice #{name}" %>
+    <%= content_tag :p, msg, class: "error #{name}" %>
   <% end -%>
 
   <%= yield %>

@@ -19,4 +19,4 @@ p.lead = "Thank you for your interest in " + @offering.name
 - else
   h2 Unable to continue
   - @order.errors.full_messages.each do |message|
-    div.errorsNotice = message
+    p.error = message
