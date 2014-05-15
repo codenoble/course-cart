@@ -7,8 +7,11 @@ h2 = "Dear " + current_user.name
 - if @order.complete?
   p.info Your order was completed on #{@order.payment.succeeded_at}
 
-- if @order.cancelled?
+- elsif @order.cancelled?
   p.warning Your order was cancelled on #{@order.cancelled_at}
+
+- elsif params[:cancelled]
+  p.warning Your order is being cancelled
 
 h2 Registrant Information
 dl.dl-horizontal.lead style="font-size: 15px;"
@@ -33,7 +36,7 @@ table
       th Total:
       td = number_to_currency(@order.total)
 
-- if @order.open?
+- if @order.open? && !params[:cancelled]
   .pull-left= form_for @order, method: :delete
     button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
 
@@ -42,5 +45,5 @@ table
       input type="hidden" name=name value=value
     button type="submit" class="btn btn-purple" Finalize Registration
 
-- elsif @order.cancelled?
-  = link_to 'Back', @order.offering
+- elsif @order.cancelled? || params[:cancelled]
+  = link_to 'Back', @order.offering, class: 'btn btn-default'
