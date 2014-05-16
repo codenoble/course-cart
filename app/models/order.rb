@@ -64,14 +64,22 @@ class Order
   end
 
   def preflight_checks
-    (offering.preflight_checks || {}).each do |validator, options|
-      validates_with validator.constantize, (options || {})
-    end
+    validate_from_hash offering.preflight_checks
   end
 
   def validations_from_offering
-    (offering.order_validators || {}).each do |validator, options|
-      validates_with validator.constantize, (options || {})
+    validate_from_hash offering.order_validators
+  end
+
+  private
+
+  def validate_from_hash(validators_hash)
+    validators_hash = Hash(validators_hash)
+
+    validators_hash.each do |validator, options|
+      options = Hash(options).with_indifferent_access
+
+      validates_with validator.constantize, options
     end
   end
 end
