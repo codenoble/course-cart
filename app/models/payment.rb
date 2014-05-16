@@ -9,7 +9,7 @@ class Payment
   field :tracking_id, type: Integer
   field :amount, type: BigDecimal
   field :succeeded_at, type: DateTime
-  # TODO: store all values from TouchNet
+  field :details, type: Hash
 
   validates :uuid, presence: true
 

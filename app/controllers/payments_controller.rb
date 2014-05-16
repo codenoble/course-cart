@@ -15,7 +15,7 @@ class PaymentsController < ApplicationController
       payment.sys_tracking_id = params[:sys_tracking_id]
       payment.pmt_amt = params[:pmt_amt]
       payment.succeeded_at = DateTime.now
-      # TODO: store all params
+      payment.details = request.POST.try(:to_hash)
       payment.save!
 
     when 'cancelled'
