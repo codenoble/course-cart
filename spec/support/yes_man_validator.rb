@@ -1,7 +1,5 @@
 class YesManValidator < ActiveModel::Validator
-  include ActionView::Helpers::TextHelper
-
-  def validate(record, options = {})
+  def validate(record)
       # never raises a validation error
   end
 end

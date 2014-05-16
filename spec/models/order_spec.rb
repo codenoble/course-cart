@@ -11,12 +11,12 @@ describe Order do
   end
 
   context 'with failing Offering#order_validators' do
-    let(:offering_attrs) { {order_validators: ['GrumpyCatValidator']} }
-    it { should be_invalid }
+    let(:offering_attrs) { {order_validators: {'GrumpyCatValidator' => nil}} }
+    its('errors.full_messages') { should eql ['NO!'] }
   end
 
   context 'with passing Offering#order_validators' do
-    let(:offering_attrs) { {order_validators: ['YesManValidator']} }
+    let(:offering_attrs) { {order_validators: {'YesManValidator' => nil}} }
     it { should be_valid }
   end
 

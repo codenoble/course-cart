@@ -7,8 +7,8 @@ class Offering
   field :name, type: String
   field :period, type: Range # Times
   field :layout, type: Symbol
-  field :preflight_checks, type: Array
-  field :order_validators, type: Array
+  field :preflight_checks, type: Hash
+  field :order_validators, type: Hash
 
   validates :name, presence: true, uniqueness: true
 

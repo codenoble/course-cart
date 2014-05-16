@@ -1,7 +1,7 @@
 class ProductLimitValidator < ActiveModel::Validator
   include ActionView::Helpers::TextHelper
 
-  def validate(record, options = {})
+  def validate(record)
     limit = options[:limit] || 1
 
     if record.purchases.length > limit

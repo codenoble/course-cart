@@ -64,14 +64,14 @@ class Order
   end
 
   def preflight_checks
-    Array(offering.preflight_checks).each do |validator|
-      validates_with validator.constantize
+    (offering.preflight_checks || {}).each do |validator, options|
+      validates_with validator.constantize, (options || {})
     end
   end
 
   def validations_from_offering
-    Array(offering.order_validators).each do |validator|
-      validates_with validator.constantize
+    (offering.order_validators || {}).each do |validator, options|
+      validates_with validator.constantize, (options || {})
     end
   end
 end
