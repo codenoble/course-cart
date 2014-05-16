@@ -15,3 +15,7 @@ touch_net:
   passed_amount_validation_key: # Set this in settings.local.yml
   posting_key: # Set this in settings.local.yml
   production: # when nil will use Rails.env
+
+urn_namespaces:
+  - "urn:biola:apps:course-cart:"
+  - "urn:biola:apps:all:"

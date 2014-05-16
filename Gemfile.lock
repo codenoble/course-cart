@@ -123,6 +123,8 @@ GEM
     origin (2.1.1)
     polyglot (0.3.4)
     posix-spawn (0.3.8)
+    pundit (0.2.3)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-cas (0.9.0)
       addressable (~> 2.3)
@@ -221,6 +223,7 @@ DEPENDENCIES
   mongoid (~> 4.0.0.beta1)
   mongoid_slug
   newrelic_rpm
+  pundit
   rack-cas
   rack-ssl
   rails (= 4.1.1)

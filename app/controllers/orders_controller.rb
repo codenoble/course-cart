@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  # TODO: authorization
-
   def show
     @order = Order.find(params[:id])
     @layout = @order.offering.layout
+
+    authorize @order
 
     @order.create_payment unless @order.payment?
 
@@ -25,6 +25,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
 
+    authorize @order
+
     if @order.save
       redirect_to @order
     else
@@ -34,6 +36,9 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
+
+    authorize @order
+
     @order.update cancelled_at: Time.now
     redirect_to @order.offering
   end

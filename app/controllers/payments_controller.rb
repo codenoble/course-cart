@@ -3,10 +3,10 @@ class PaymentsController < ApplicationController
   skip_before_action :authenticate!
 
   def update
-    render_error_page(403) and return unless posting_key_valid?
-
     order = Order.find_by('payment.uuid' => params[:EXT_TRANS_ID])
     payment = order.payment
+
+    authorize payment
 
     case params[:pmt_status]
     when 'success'
@@ -35,7 +35,8 @@ class PaymentsController < ApplicationController
 
   private
 
-  def posting_key_valid?
-    params[:posting_key] == Settings.touch_net.posting_key
+  def pundit_user
+    # No users here, just keys
+    params[:posting_key]
   end
 end
