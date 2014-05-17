@@ -1,24 +1,25 @@
-.row
-  table.table.table-striped.table-hover.table-responsive
-    thead
-      tr
-        th Name
-        th Email
-        th Offer
-        th Status
-        th Cancelled?
+table.table.table-striped.table-hover.table-responsive
+  thead
+    tr
+      th
+      th Name
+      th Offer
+      th Status
 
-    tbody
-      - orders.each do |order|
-        tr
-          td = link_to order.user.name, admin_order_path(order)
-          td = order.user.email
-          td = order.offering.name
-          - if order.pending_payment?
-            td Pending Payment
+  tbody
+    - orders.each do |order|
+      tr
+        td
+          = link_to admin_order_path(order) do
+            = fa_icon('link')
+        td = order.user.name
+        td = order.offering.name
+        td
+          - if order.cancelled?
+            | Cancelled
+          - elsif order.pending_payment?
+            | Pending Payment
           - elsif order.complete?
-            td Paid
-          - else
-            td
-          td = order.cancelled? ? "Yes" : ""
-  .text-center = paginate orders
+            | Paid
+
+.text-center = paginate orders

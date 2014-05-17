@@ -1,0 +1,32 @@
+.container.page
+  .row
+    .white-shadowed-panel
+      .page-header
+        h2 Orders
+
+      - if @order.complete?
+        p.info Order was completed on #{@order.payment.succeeded_at}
+
+      - elsif @order.cancelled?
+        p.warning Order was cancelled on #{@order.cancelled_at}
+
+      dl.dl-horizontal
+        dt Name:
+        dd = link_to @order.user.name, [:admin, @order.user]
+        dt Email:
+        dd = @order.user.email
+
+      table.table.table-striped.table-hover.table-responsive
+        thead
+          tr
+            th Product
+            th Price
+        tbody
+          - @order.purchases.each do |purchase|
+            tr
+              td = purchase.product
+              td = number_to_currency(purchase.product.price)
+        tfoot
+          tr
+            th Total:
+            td = number_to_currency(@order.total)
