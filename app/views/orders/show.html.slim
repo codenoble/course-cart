@@ -1,8 +1,7 @@
-h1 Smart Start Registration
-h2 = "Dear " + current_user.name
-.lead style="font-size: 15px;" We’re excited that you have decided to join us for this online education experience!
-.lead style="font-size: 15px;" Please confirm your registration below.
-
+- if @order.open?
+  .lead style="font-size: 15px;" Please confirm your registration below.
+- elsif @order.complete?
+  .lead style="font-size: 15px;" We’re excited that you have decided to join us for this online education experience!
 
 - if @order.complete?
   p.info Your order was completed on #{@order.payment.succeeded_at}
