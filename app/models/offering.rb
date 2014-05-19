@@ -9,6 +9,7 @@ class Offering
   field :layout, type: Symbol
   field :preflight_checks, type: Hash
   field :order_validators, type: Hash
+  field :default, type: Boolean # have the default route redirect to this
 
   validates :name, presence: true, uniqueness: true
 

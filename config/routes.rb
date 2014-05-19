@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root to: 'orders#index'
   end
 
-  resources :offerings, only: [:index, :show]
+  resources :offerings, only: :show
   resources :orders, only: [:show, :create, :destroy]
 
   # for TouchNet post-backs
@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   # this is just a convenience to create a named route to rack-cas' logout
   get '/logout' => -> env { [200, { 'Content-Type' => 'text/html' }, ['Rack::CAS should have caught this']] }, as: :logout
 
-  root 'offerings#index'
+  root 'offerings#show'
 end
