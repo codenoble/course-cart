@@ -17,6 +17,7 @@ class Order
   validates :purchases, length: { minimum: 1, message: 'is empty. Please select at least one product.'}
   validates :cancelled_at, absence: {:if => -> order { order.complete? }}
   validate :offering_open, on: :create
+  validate :products_available, on: :create
   validate :preflight_checks, on: :preflight
   validate :validations_from_offering, on: [:create, :update]
 
@@ -80,6 +81,12 @@ class Order
       options = Hash(options).with_indifferent_access
 
       validates_with validator.constantize, options
+    end
+  end
+
+  def products_available
+    purchases.map(&:product).each do |product|
+      errors.add(:base, "#{product} has been sold out") if product.sold_out?
     end
   end
 end
