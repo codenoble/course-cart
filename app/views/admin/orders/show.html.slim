@@ -2,31 +2,54 @@
   .row
     .white-shadowed-panel
       .page-header
-        h2 Orders
+        h2
+          ' Order
+          .label.pull-right class="label-#{@order.status_class}" style="font-family: sans-serif;" = @order.status
 
       - if @order.complete?
-        p.info Order was completed on #{@order.payment.succeeded_at}
+        p.alert.alert-success Order was completed on #{@order.payment.succeeded_at}
 
       - elsif @order.cancelled?
-        p.warning Order was cancelled on #{@order.cancelled_at}
+        p.alert.alert-warning Order was cancelled on #{@order.cancelled_at}
 
-      dl.dl-horizontal
-        dt Name:
-        dd = link_to @order.user.name, [:admin, @order.user]
-        dt Email:
-        dd = @order.user.email
+      .panel.panel-default
+        .panel-heading
+          = link_to @order.user.name, [:admin, @order.user]
+        .panel-body
+          img.img-thumbnail.pull-left src=@order.user.photo_url
 
-      table.table.table-striped.table-hover.table-responsive
-        thead
-          tr
-            th Product
-            th Price
-        tbody
-          - @order.purchases.each do |purchase|
+          dl.dl-horizontal.pull-left
+            dt ID #:
+            dd = @order.user.id_number
+            dt Email:
+            dd = @order.user.email
+            dt Affiliations:
+            dd = Array(@order.user.affiliations).to_sentence
+
+      .panel.panel-default
+        .panel-heading
+          = @order.offering
+
+        table.table.table-striped.table-hover.table-responsive
+          thead
             tr
-              td = purchase.product
-              td = number_to_currency(purchase.product.price)
-        tfoot
-          tr
-            th Total:
-            td = number_to_currency(@order.total)
+              th Product
+              th Price
+          tbody
+            - @order.purchases.each do |purchase|
+              tr
+                td = purchase.product
+                td = number_to_currency(purchase.product.price)
+          tfoot
+            tr
+              th.text-right Total:
+              td = number_to_currency(@order.total)
+
+        .panel-body
+          - if @order.payment.try(:details?)
+            h4 TouchNet Payment Details
+            dl.dl-horizontal
+              - @order.payment.details.each do |key, val|
+                dt = "#{key.titleize}:"
+                dd
+                  code.text-warning.bg-warning = val

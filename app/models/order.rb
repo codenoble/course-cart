@@ -32,6 +32,26 @@ class Order
     valid? :preflight
   end
 
+  def status
+    if cancelled?
+      'Cancelled'
+    elsif pending_payment?
+      'Pending Payment'
+    elsif complete?
+      'Paid'
+    end
+  end
+
+  def status_class
+    if cancelled?
+      :warning
+    elsif pending_payment?
+      :info
+    elsif complete?
+      :success
+    end
+  end
+
   def open?
     !complete? && !cancelled?
   end

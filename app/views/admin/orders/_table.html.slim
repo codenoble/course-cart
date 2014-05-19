@@ -14,12 +14,6 @@ table.table.table-striped.table-hover.table-responsive
             = fa_icon('link')
         td = order.user.name
         td = order.offering.name
-        td
-          - if order.cancelled?
-            | Cancelled
-          - elsif order.pending_payment?
-            | Pending Payment
-          - elsif order.complete?
-            | Paid
+        td = order.status
 
 .text-center = paginate orders
