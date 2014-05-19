@@ -7,7 +7,7 @@ p.lead = "Thank you for your interest in " + @offering.name
     ul.products
       = f.fields_for(:purchases) do |fields|
         li style="list-style: none;"
-          =' fields.check_box :product_id, {checked: fields.object.slug == params[:product]}, fields.object.product_id.to_s, nil
+          =' fields.check_box :product_id, {checked: fields.object.slug == params[:product], disabled: fields.object.product.sold_out?}, fields.object.product_id.to_s, nil
           = fields.label :product_id do
             strong = fields.object.product.name
             br
