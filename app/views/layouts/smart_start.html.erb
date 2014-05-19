@@ -103,6 +103,11 @@
 </div>
 
 <div class="grid-12">
+  <small style="float: right; color: #999;">
+    Not <%= current_user.try(:first_name) %>?
+    <a href="<%= logout_path %>">Log out</a>.
+  </small>
+
   <% flash.each do |name, msg| -%>
     <%= content_tag :p, msg, class: "error #{name}" %>
   <% end -%>
