@@ -24,7 +24,7 @@ class Order
   scope :cancelled, -> { where(:cancelled_at.ne => nil) }
   scope :uncancelled, -> { where(cancelled_at: nil) }
 
-  scope :paid, -> { where('payment.status' => :successful ) }
+  scope :paid, -> { where('payment.status' => :success ) }
   scope :pending_payment, -> { uncancelled.where('payment.gateway_transaction_id' => nil) }
 
 
