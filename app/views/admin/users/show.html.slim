@@ -1,0 +1,35 @@
+.container.page
+  .row
+    .white-shadowed-panel
+      .page-header
+        h2 = @user.name
+
+      img.img-thumbnail.pull-left src=@user.photo_url
+
+      dl.dl-horizontal.pull-left
+        dt ID #:
+        dd = @user.id_number
+        dt Email:
+        dd = mail_to @user.email
+        dt Roles:
+        dd = Array(@user.roles).to_sentence
+
+      .clearfix
+
+      h3 Orders
+      table.table.table-striped.table-hover.table-responsive
+        thead
+          tr
+            th
+            th Date
+            th Offering
+            th Status
+
+        tbody
+          - @user.orders.each do |order|
+            tr
+              td = link_to fa_icon('link'), admin_order_path(order)
+              td = order.created_at
+              td = order.offering.name
+              td
+                span.label class="label-#{order.status_class}" = order.status

@@ -22,9 +22,9 @@
             dt ID #:
             dd = @order.user.id_number
             dt Email:
-            dd = @order.user.email
-            dt Affiliations:
-            dd = Array(@order.user.affiliations).to_sentence
+            dd = mail_to @order.user.email
+            dt Roles:
+            dd = Array(@order.user.roles).to_sentence
 
       .panel.panel-default
         .panel-heading

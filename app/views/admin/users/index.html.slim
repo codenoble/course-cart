@@ -8,7 +8,6 @@
         = render 'table', users: @users
     .col-md-3
       ul.nav.nav-list.well
-        = nav_list_header 'Fake', :status
-        = nav_list_link 'These', :status, 'scheduled'
-        = nav_list_link 'Do not', :status, 'sent'
-        = nav_list_link 'Work', :status, 'failed'
+        = nav_list_header 'Roles', :role
+        - User.all.map(&:roles).flatten.uniq.each do |role|
+          = nav_list_link role, :role, role

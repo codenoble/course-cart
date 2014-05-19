@@ -3,17 +3,16 @@ table.table.table-striped.table-hover.table-responsive
     tr
       th
       th Name
-      th Offer
+      th Offering
       th Status
 
   tbody
     - orders.each do |order|
       tr
-        td
-          = link_to admin_order_path(order) do
-            = fa_icon('link')
+        td = link_to fa_icon('link'), admin_order_path(order)
         td = order.user.name
         td = order.offering.name
-        td = order.status
+        td
+          span.label class="label-#{order.status_class}" = order.status
 
 .text-center = paginate orders

@@ -1,13 +1,16 @@
-.row
-  table.table.table-striped.table-hover.table-responsive
-    thead
-      tr
-        th Name
-        th Email
+table.table.table-striped.table-hover.table-responsive
+  thead
+    tr
+      th
+      th Name
+      th ID #
+      th Roles
 
-    tbody
-      - users.each do |user|
-        tr
-          td = link_to user.name, admin_user_path(user)
-          td = user.email
-  .text-center = paginate users
+  tbody
+    - users.each do |user|
+      tr
+        td = link_to fa_icon('link'), admin_user_path(user)
+        td = user.name
+        td = user.id_number
+        td = user.roles.to_sentence
+.text-center = paginate users

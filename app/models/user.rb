@@ -15,6 +15,8 @@ class User
 
   validates :username, presence: true, uniqueness: true
 
+  scope :with_role, -> role { all.or(affiliations: role).or(:entitlements.in => User.role_to_entitlement(role)) }
+
   def name
     "#{self.first_name} #{self.last_name}".strip
   end
@@ -46,5 +48,11 @@ class User
         urn[0...nid.length] == nid ? urn[nid.length..urn.length] : nil
       }
     }.flatten.compact
+  end
+
+  def self.role_to_entitlement(role)
+    Settings.urn_namespaces.map do |namespace|
+      "#{namespace}#{role}"
+    end
   end
 end
