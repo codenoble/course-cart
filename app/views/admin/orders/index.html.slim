@@ -8,10 +8,11 @@
         = render 'table', orders: @orders
     .col-md-3
       ul.nav.nav-list.well
-        = nav_list_header 'Cancelled?', :cancelled
-        = nav_list_link 'Yes', :cancelled, true
-        = nav_list_link 'No', :cancelled, false
+        = nav_list_header 'Offerings', :offering
+        - Offering.all.each do |offering|
+          = nav_list_link offering, :offering, offering.id
 
         = nav_list_header 'Order Status', :status
+        = nav_list_link 'Cancelled', :status, 'cancelled'
         = nav_list_link 'Pending Payment', :status, 'pending_payment'
         = nav_list_link 'Paid', :status, 'paid'

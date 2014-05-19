@@ -3,8 +3,8 @@ class Admin::OrdersController < Admin::ApplicationController
 
   def index
     @orders = admin_policy_scope(Order)
-    @orders = @orders.cancelled if params[:cancelled] == 'true'
-    @orders = @orders.uncancelled if params[:cancelled] == 'false'
+    @orders = @orders.where(offering_id: params[:offering]) if params[:offering]
+    @orders = @orders.cancelled if params[:status] == 'cancelled'
     @orders = @orders.pending_payment if params[:status] == "pending_payment"
     @orders = @orders.paid if params[:status] == "paid"
     @orders = @orders.page(params[:page])
