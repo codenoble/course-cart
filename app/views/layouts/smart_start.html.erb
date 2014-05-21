@@ -57,6 +57,18 @@
       display: block;
       padding-left: 20px;
     }
+
+    #contact {
+      text-align: center;
+    }
+
+    #contact img {
+      margin-bottom: 10px;
+    }
+
+    #contact h2 {
+      margin-bottom: 0;
+    }
   </style>
 
 
@@ -95,28 +107,45 @@
   <div id="ugPage" class="full">
     <div class="wrap1">
 
-<div class="pageHead" id="pageHeadHome" style="margin-left: -10px; margin-right: -30px;">
-  <div class="grid-12 pad-2">
-    <p class="image"><img src="//media.biola.edu/undergrad/static/smartstart/images/mouse-pointer.png" width="194" height="210" style="margin-top: -100px; margin-bottom: -50px;" /></p>
-    <h1 id="pageTitle">Smart Start Registration</h1>
-  </div>
-</div>
+      <div class="pageHead" id="pageHeadHome" style="margin-left: -10px; margin-right: -30px;">
+        <div class="grid-12 pad-2">
+          <p class="image"><img src="//media.biola.edu/undergrad/static/smartstart/images/mouse-pointer.png" width="194" height="210" style="margin-top: -100px; margin-bottom: -50px;" /></p>
+          <h1 id="pageTitle">Smart Start Registration</h1>
+        </div>
+      </div>
 
-<div class="grid-12">
-  <small style="float: right; color: #999;">
-    Not <%= current_user.try(:first_name) %>?
-    <a href="<%= logout_path %>">Log out</a>.
-  </small>
+      <div class="grid-8">
 
-  <% flash.each do |name, msg| -%>
-    <%= content_tag :p, msg, class: "error #{name}" %>
-  <% end -%>
+        <% flash.each do |name, msg| -%>
+          <%= content_tag :p, msg, class: "error #{name}" %>
+        <% end -%>
 
-  <%= yield %>
-</div>
+        <%= yield %>
+      </div>
 
+      <div class="grid-4">
+        <p style="text-align: right;">
+          <small style="color: #999;">
+            Not <%= current_user.try(:first_name) %>?
+            <a href="<%= logout_path %>">Log out</a>.
+          </small>
+        </p>
+
+        <div id="contact" class="aside">
+          <p style="text-align: left;"><em>For questions contact:</em></p>
+          <%= image_tag 'chris-johnson.png' %>
+          <h2>Chris Johnson</h2>
+          <h3>Admissions Representative</h3>
+
+          <p>
+            562-903-4752<br/>
+            <%= mail_to('christopher.d.johnson@biola.edu') %>
+          </p>
+        </div>
+      </div>
+
+      </div>
     </div>
-  </div>
 
     </div>
 
