@@ -12,7 +12,7 @@ class Product
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
 
-  slug :name
+  slug :name, history: true
 
   def orders
     Order.where(:'purchases.product_id' => id)

@@ -13,7 +13,7 @@ class Offering
 
   validates :name, presence: true, uniqueness: true
 
-  slug :name
+  slug :name, history: true
 
   # NOTE: be sure to store times in UTC or you'll have offset issues
   scope :open, -> do
