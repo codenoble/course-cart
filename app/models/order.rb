@@ -27,28 +27,27 @@ class Order
   scope :paid, -> { where('payment.status' => :success ) }
   scope :pending_payment, -> { uncancelled.where('payment.gateway_transaction_id' => nil) }
 
-
   def preflight_passed?
     valid? :preflight
   end
 
   def status
-    if cancelled?
+    if complete?
+      'Paid'
+    elsif cancelled?
       'Cancelled'
     elsif pending_payment?
       'Pending Payment'
-    elsif complete?
-      'Paid'
     end
   end
 
   def status_class
-    if cancelled?
+    if complete?
+      :success
+    elsif cancelled?
       :warning
     elsif pending_payment?
       :info
-    elsif complete?
-      :success
     end
   end
 
