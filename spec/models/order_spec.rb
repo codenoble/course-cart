@@ -33,12 +33,17 @@ describe Order do
     end
 
     context 'when at or over availability' do
+      let(:order) { build :order }
       let(:product) { create :product, available: 1 }
-      let!(:purchase) { build :purchase, product: product }
-      before { create :purchase, product: product }
-      subject { purchase.order }
+      let!(:other_purchase) { create :purchase, product: product }
+      let!(:other_payment) { create :payment, :successful, order: other_purchase.order }
 
-      it { should be_invalid}
+      before do
+        order.purchases << build(:purchase, product: product)
+        order.payment = build(:payment, :successful)
+      end
+
+      it { should be_invalid }
     end
   end
 end

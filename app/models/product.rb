@@ -20,7 +20,7 @@ class Product
 
   def sold_out?
     return false if available.nil?
-    orders.count >= available
+    orders.paid.count >= available
   end
 
   alias :to_s :name

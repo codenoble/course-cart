@@ -23,7 +23,8 @@ describe Product do
 
     context 'with same as #available orders' do
       let(:attrs) { {available: 1} }
-      before { create :purchase, product: product }
+      let!(:purchase) { create :purchase, product: product }
+      let!(:payment) { create :payment, :successful, order: purchase.order }
 
       its(:sold_out?) { should be_true }
     end
