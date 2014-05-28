@@ -4,3 +4,5 @@ rvm:
 services:
   - mongodb
 script: bundle exec rspec
+# skip ruby-oci8 since it can't be installed on Travis
+bundler_args: --without devolopment staging production

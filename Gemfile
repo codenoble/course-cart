@@ -16,13 +16,16 @@ gem 'newrelic_rpm'
 gem 'pundit'
 gem 'rack-cas'
 gem 'rails_config'
-gem 'ruby-oci8'
 gem 'sass-rails', '~> 4.0.3'
 gem 'slim'
 gem 'therubyracer',  platforms: :ruby
 gem 'turbolinks'
 gem 'turnout'
 gem 'uglifier', '>= 1.3.0'
+
+group :development, :staging, :production do
+  gem 'ruby-oci8'
+end
 
 group :development, :test do
   gem 'rspec-rails'
