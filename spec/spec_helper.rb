@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 
 FactoryGirl.find_definitions
+Mongoid.load!('spec/config/mongoid.yml')
 
 Dir[Rails.root.join('spec/support/*.rb')].each { |f| require f }
 
