@@ -21,6 +21,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'slim'
 gem 'therubyracer',  platforms: :ruby
 gem 'turbolinks'
+gem 'turnout'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do

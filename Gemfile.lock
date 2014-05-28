@@ -34,7 +34,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    biola_deploy (0.6.2)
+    biola_deploy (0.7.1)
     blazing (0.4.1)
       activesupport
       grit
@@ -198,6 +198,9 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
+    turnout (0.3.0)
+      nokogiri (~> 1.3)
+      rack
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
@@ -235,4 +238,5 @@ DEPENDENCIES
   spring
   therubyracer
   turbolinks
+  turnout
   uglifier (>= 1.3.0)
