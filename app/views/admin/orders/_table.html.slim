@@ -4,14 +4,19 @@ table.table.table-striped.table-hover.table-responsive
       th
       th Name
       th Offering
+      th Products
+      th Last Change
       th Status
 
   tbody
     - orders.each do |order|
       tr
         td = link_to fa_icon('link'), admin_order_path(order)
-        td = order.user.name
+        td = link_to order.user.name, [:admin, order.user]
         td = order.offering.name
+        td
+          small = order.purchases.map(&:product).to_sentence
+        td title=order.updated_at = time_ago_in_words(order.updated_at)
         td
           span.label class="label-#{order.status_class}" = order.status
 
