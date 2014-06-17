@@ -4,7 +4,13 @@ class SmartStartEligibilityValidator < ActiveModel::Validator
   def validate(record)
     term = options[:term].try(:to_s)
     id_number = record.user.id_number.to_s.rjust(8, '0')
-    conn = OCI8.new(Settings.banner.connection_string)
+
+    begin
+      conn = OCI8.new(Settings.banner.connection_string)
+    rescue OCIError => err
+      record.errors[:base] << "Error: Unable to confirm your eligibility at this time. Please try again."
+      return false
+    end
 
     cursor = if term
       conn.exec('SELECT id FROM bsv_smartstart WHERE term = :1 AND id = :2', term, id_number)
