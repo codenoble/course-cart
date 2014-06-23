@@ -19,3 +19,12 @@ touch_net:
 urn_namespaces:
   - "urn:biola:apps:course-cart:"
   - "urn:biola:apps:all:"
+
+email:
+  smtp:
+    server: postfix.biola.edu
+  from: no-reply@biola.edu
+
+exceptions:
+  mail_to:
+  - appdev@biola.edu
