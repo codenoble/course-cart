@@ -26,7 +26,7 @@ gem 'turnout'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :staging, :production do
-  gem 'ruby-oci8'
+  gem 'ruby-oci8', require: 'oci8'
 end
 
 group :development, :test do

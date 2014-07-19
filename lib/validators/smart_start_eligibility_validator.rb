@@ -1,5 +1,3 @@
-require 'oci8'
-
 class SmartStartEligibilityValidator < ActiveModel::Validator
   def validate(record)
     term = options[:term].try(:to_s)
