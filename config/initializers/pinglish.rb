@@ -3,7 +3,7 @@ CourseCart::Application.config.middleware.use Pinglish do |ping|
     Mongoid.default_session.command(ping: 1).has_key? 'ok'
   end
 
-  ping.check :banner do
+  ping.check :banner, timeout: 3 do
     conn = OCI8.new(Settings.banner.connection_string)
     conn.ping.tap do
       conn.logoff
