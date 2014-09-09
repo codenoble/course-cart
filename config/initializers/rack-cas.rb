@@ -7,11 +7,11 @@ if Rails.env.test?
   CourseCart::Application.config.middleware.swap Rack::FakeCAS, Rack::FakeCAS
 else
   require 'rack/cas'
-  # require 'rack-cas/session_store/mongoid'
+  require 'rack-cas/session_store/mongoid'
 
   extra_attributes = [:cn, :employeeId, :eduPersonNickname, :sn, :mail, :url, :eduPersonAffiliation, :eduPersonEntitlement]
   CourseCart::Application.config.middleware.use Rack::CAS,
     server_url: Settings.cas.url,
-    # session_store: RackCAS::MongoidStore,
+    session_store: RackCAS::MongoidStore,
     extra_attributes_filter: extra_attributes
 end
