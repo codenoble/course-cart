@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.7'
 
 gem 'biola_deploy'
 gem 'blazing'
@@ -18,7 +18,7 @@ gem 'pinglish'
 gem 'pundit'
 gem 'rack-cas', '>= 0.9.2'
 gem 'rails_config'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 4.0.4'
 gem 'slim'
 gem 'therubyracer',  platforms: :ruby
 gem 'turbolinks'
