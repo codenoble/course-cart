@@ -9,7 +9,7 @@ class Product
   field :available, type: Integer
   mount_uploader :photo, PhotoUploader
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: {scope: :offering}
   validates :price, presence: true
 
   slug :name, history: true
