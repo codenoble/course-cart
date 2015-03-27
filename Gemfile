@@ -7,7 +7,6 @@ gem 'blazing'
 gem 'bootstrap-sass'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'exception_notification'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'kaminari-bootstrap', '~> 3.0.1'
@@ -46,4 +45,8 @@ end
 
 group :staging, :production do
   gem 'rack-ssl', require: 'rack/ssl'
+end
+
+group :production do
+  gem 'sentry-raven'
 end
