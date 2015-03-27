@@ -16,6 +16,9 @@ touch_net:
   posting_key: # Set this in settings.local.yml
   production: # when nil will use Rails.env
 
+sentry:
+  url: # Set this in settings.local.yml
+
 urn_namespaces:
   - "urn:biola:apps:course-cart:"
   - "urn:biola:apps:all:"

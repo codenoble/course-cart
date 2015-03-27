@@ -3,6 +3,9 @@ secret_token: # run rake secret to generate this
 banner:
   connection_string: # "username/******@dbserver.example.com/PROD.example.com"
 
+sentry:
+  url: # Set this in settings.local.yml
+
 touch_net:
   upay_store_id:
   context:
