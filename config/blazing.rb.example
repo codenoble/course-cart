@@ -4,4 +4,4 @@ target :'ruby3a.prod',   'johnd0@ruby3a.prod.biola.edu:/srv/rack/course-cart',  
 
 env_scripts '/etc/profile'
 
-rake :post_deploy, RAILS_RELATIVE_URL_ROOT=/course-cart
+rake :post_deploy, 'RAILS_RELATIVE_URL_ROOT=/course-cart'
