@@ -1,3 +1,6 @@
+- @order.warnings.each do |message|
+  p.error = message
+
 - if @order.open?
   .lead style="font-size: 15px;" Please confirm your registration below.
 - elsif @order.complete?
