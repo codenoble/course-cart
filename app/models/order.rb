@@ -31,6 +31,12 @@ class Order
     valid? :preflight
   end
 
+  def warnings
+    Hash(offering.order_warners).map { |warner, options|
+      warner.constantize.new(self, options).warnings
+    }.compact
+  end
+
   def status
     if complete?
       'Paid'

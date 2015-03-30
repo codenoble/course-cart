@@ -13,7 +13,7 @@ module CourseCart
   class Application < Rails::Application
     config.time_zone = 'Pacific Time (US & Canada)'
 
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/validators)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/validators #{config.root}/lib/warners)
     config.i18n.default_locale = :en
     config.assets.precompile += %w( biola/header.css biola/header.js )
   end
