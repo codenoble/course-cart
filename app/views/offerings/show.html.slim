@@ -11,7 +11,7 @@ p.lead = "Thank you for your interest in " + @offering.name
           = fields.label :product_id do
             strong = fields.object.product.name
             br
-            = fields.object.product.description
+            = fields.object.product.description.html_safe
 
     button type="submit" class="btn btn-default" Continue
 
