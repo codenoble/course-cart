@@ -18,7 +18,7 @@ class SmartStartEligibilityValidator < ActiveModel::Validator
     row = cursor.fetch
 
     unless row.try(:first) == id_number
-      record.errors[:base] << 'You are not eligible for Smart Start classes'
+      record.errors[:base] << 'You are not eligible for these summer courses'
     end
 
     cursor.close
