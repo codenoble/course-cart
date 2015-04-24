@@ -79,6 +79,18 @@ class Order
     created_at.to_s
   end
 
+  def to_csv
+    {
+      name: user.name,
+      id: user.id_number,
+      email: user.email,
+      courses: purchases.map{|p| p.product.name},
+      last_change: updated_at,
+      status: status,
+      offering: offering.name
+    }
+  end
+
   private
 
   def set_offering
