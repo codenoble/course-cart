@@ -3,6 +3,7 @@
     .col-md-9
       .white-shadowed-panel
         .page-header
+          .pull-right = link_to 'Download CSV', admin_orders_path(format: 'csv', params: params), class: 'btn btn-default'
           h2 Orders
 
         = render 'table', orders: @orders
