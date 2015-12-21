@@ -19,6 +19,7 @@ class Offering
   field :posting_key, type: String
 
   validates :name, presence: true, uniqueness: true
+  validates :upay_store_id, :context, :passed_amount_validation_key, :posting_key, presence: true
 
   slug :name, history: true
 
