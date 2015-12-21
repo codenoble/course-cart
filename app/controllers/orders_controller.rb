@@ -8,9 +8,9 @@ class OrdersController < ApplicationController
     @order.create_payment unless @order.payment?
 
     unless @order.complete?
-      store_id = Settings.touch_net.upay_store_id
-      context = Settings.touch_net.context
-      passed_amount_validation_key = Settings.touch_net.passed_amount_validation_key
+      store_id = @order.offering.upay_store_id
+      context = @order.offering.context
+      passed_amount_validation_key = @order.offering.passed_amount_validation_key
       success_link = order_url(@order)
       cancel_link =  order_url(@order, cancelled: true)
       production = Settings.touch_net.production

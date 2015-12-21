@@ -5,9 +5,3 @@ banner:
 
 sentry:
   url: # Set this in settings.local.yml
-
-touch_net:
-  upay_store_id:
-  context:
-  passed_amount_validation_key:
-  posting_key:

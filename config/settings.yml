@@ -10,10 +10,6 @@ cas:
   url: "https://login.biola.edu/cas"
 
 touch_net:
-  upay_store_id: # Set this in settings.local.yml
-  context: # Set this in settings.local.yml
-  passed_amount_validation_key: # Set this in settings.local.yml
-  posting_key: # Set this in settings.local.yml
   production: # when nil will use Rails.env
 
 sentry:

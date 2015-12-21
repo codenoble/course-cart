@@ -12,6 +12,12 @@ class Offering
   field :order_warners, type: Hash
   field :default, type: Boolean # have the default route redirect to this
 
+  # TouchNet attributes
+  field :upay_store_id, type: Integer
+  field :context, type: String
+  field :passed_amount_validation_key, type: String
+  field :posting_key, type: String
+
   validates :name, presence: true, uniqueness: true
 
   slug :name, history: true

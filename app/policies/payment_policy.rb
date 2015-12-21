@@ -9,7 +9,7 @@ class PaymentPolicy < ApplicationPolicy
   end
 
   def update?
-    posting_key == Settings.touch_net.posting_key
+    posting_key == record.order.offering.posting_key
   end
 
   private
