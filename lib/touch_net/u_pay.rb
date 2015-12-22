@@ -4,7 +4,7 @@ require 'base64'
 module TouchNet
   class UPay
     PRODUCTION_SERVER = 'https://secure.touchnet.com'
-    STAGING_SERVER = 'https://secure.touchnet.com:8443'
+    STAGING_SERVER = 'https://test.secure.touchnet.net:8443'
     COUNTRY = 'US'
 
     attr_accessor :site_id
