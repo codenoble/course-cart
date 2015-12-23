@@ -21,6 +21,13 @@ dl.dl-horizontal.lead style="font-size: 15px;"
   dd = current_user.name
   dt Email:
   dd = current_user.email
+
+h3 Questions
+dl.dl-horizontal
+  - @order.answers.each do |answer|
+    dt = answer.name
+    dd = answer.value
+
 h2 Course Price
 
 table
@@ -38,14 +45,19 @@ table
       th Total:
       td = number_to_currency(@order.total)
 
-- if @order.open? && !params[:cancelled]
-  .pull-left= form_for @order, method: :delete
-    button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
+div style="text-align: right"
+  - if @order.open? && !params[:cancelled]
+    span>
+      - if @order.questions?
+        = link_to 'Back', [:edit, @order], class: 'btn btn-default'
+      - else
+        = form_for @order, method: :delete
+          button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
 
-  form action=@upay.url method="post" class="pull-left"
-    - @upay_parameters.each do |name, value|
-      input type="hidden" name=name value=value
-    button type="submit" class="btn btn-purple" Finalize Registration
+    form action=@upay.url method="post" style="display: inline;"
+      - @upay_parameters.each do |name, value|
+        input type="hidden" name=name value=value
+      button type="submit" class="btn btn-purple" Finalize Registration
 
-- elsif @order.cancelled? || params[:cancelled]
-  = link_to 'Back', @order.offering, class: 'btn btn-default'
+  - elsif @order.cancelled? || params[:cancelled]
+    = link_to 'Back', @order.offering, class: 'btn btn-default'

@@ -30,6 +30,14 @@
         .panel-heading
           = @order.offering
 
+        - if @order.answers.any?
+          .panel-body
+            h4 Answers
+            dl.dl-horizontal
+              - @order.answers.each do |answer|
+                dt title=answer.name = answer.name
+                dd = answer.value
+
         table.table.table-striped.table-hover.table-responsive
           thead
             tr

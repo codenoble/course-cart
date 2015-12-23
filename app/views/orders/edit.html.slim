@@ -1,0 +1,16 @@
+h2 Registration Questions
+
+p Please complete the following questions to continue your registration.
+
+= form_for @order do |f|
+  = f.fields_for :answers, @order.answers do |answer|
+    = render "answers/#{answer.object.type}", f: answer
+
+  = f.submit 'Continue', class: 'btn btn-purple', style: 'float: right'
+
+- if @order.open? && !params[:cancelled]
+  = form_for @order, method: :delete, html: {style: 'float: right'}
+    button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
+
+- elsif @order.cancelled? || params[:cancelled]
+  = link_to 'Back', @order.offering, class: 'btn btn-default'

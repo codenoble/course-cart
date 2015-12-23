@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :offerings, only: :show
-  resources :orders, only: [:show, :create, :destroy]
+  resources :orders, except: [:index, :new]
 
   # for TouchNet post-backs
   post '/payment', to: 'payments#update'

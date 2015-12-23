@@ -6,9 +6,14 @@ class Order
   belongs_to :offering
   embeds_many :purchases
   embeds_one :payment
+  embeds_many :answers
   field :cancelled_at, type: Time
 
+  delegate :questions, to: :offering
+  delegate :questions?, to: :offering
+
   accepts_nested_attributes_for :purchases, reject_if: -> (hash) { hash[:product_id].blank? }
+  accepts_nested_attributes_for :answers
 
   before_validation :set_offering
 

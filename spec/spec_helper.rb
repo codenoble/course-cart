@@ -9,6 +9,7 @@ Dir[Rails.root.join('spec/support/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include Mongoid::Matchers, type: :model
 
   # Clean/Reset Mongoid DB prior to running each test.
   config.before(:each) do

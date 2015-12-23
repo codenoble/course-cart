@@ -31,10 +31,23 @@ Configuration
 
 Edit `config/blazing.rb`, `config/mongoid.yml`, `config/settings.local.yml` and `config/newrelic.yml` accordingly.
 
+TouchNet uPay Store Configuration
+---------------------------------
+
+TODO
+
+
 Testing
 -------
 
 Simply run `rspec` to run the automated test suite.
+
+To test a credit card transaction against the staging TouchNet servers, simply use the following credit card details.
+
+__Credit Card Type:__ Visa
+__Account Number:__ 4111111111111111
+__Security Code:__ 123
+
 
 Related Documentation
 ---------------------

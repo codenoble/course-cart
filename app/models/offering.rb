@@ -2,6 +2,7 @@ class Offering
   include Mongoid::Document
   include Mongoid::Slug
 
+  embeds_many :questions
   has_many :products
   has_many :orders
   field :name, type: String
@@ -23,10 +24,11 @@ class Offering
 
   slug :name, history: true
 
+  before_validation :set_keys
+
   # NOTE: be sure to store times in UTC or you'll have offset issues
   scope :open, -> do
     now = Time.now
-    # TODO: test me
     scoped.
       or(period: nil).
       or(:'period.min'.lt => now, :'period.max'.gt => now).
@@ -38,4 +40,14 @@ class Offering
   end
 
   alias :to_s :name
+
+  private
+
+  def set_keys
+    # 30 alphanumeric characters according to TouchNet documentation
+    gen_key = -> { (0..30).map { (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).sample }.join }
+
+    self.passed_amount_validation_key ||= gen_key.call
+    self.posting_key ||= gen_key.call
+  end
 end

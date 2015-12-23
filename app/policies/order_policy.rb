@@ -7,5 +7,7 @@ class OrderPolicy < ApplicationPolicy
     true
   end
 
+  alias :edit? :show?
+  alias :update? :show?
   alias :destroy? :show?
 end

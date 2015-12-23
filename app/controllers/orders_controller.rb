@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
-    @layout = @order.offering.layout
+    set_layout @order
 
     authorize @order
 
@@ -22,15 +22,44 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(order_create_params)
     @order.user = current_user
 
     authorize @order
 
     if @order.save
-      redirect_to @order
+      destination = @order.questions? ? [:edit, @order] : @order
+
+      redirect_to destination
     else
       redirect_to @order.offering, alert: @order.errors.full_messages.to_sentence
+    end
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+    set_layout @order
+
+    authorize @order
+
+    @order.questions.each do |question|
+      if @order.answers.where(question_id: question.id).none?
+        @order.answers.build question_id: question.id
+      end
+    end
+  end
+
+  def update
+    @order = Order.find(params[:id])
+
+    authorize @order
+
+    if @order.update order_update_params
+      redirect_to @order
+    else
+      set_layout @order
+
+      render :edit
     end
   end
 
@@ -45,7 +74,15 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
+  def set_layout(order)
+    @layout = order.offering.layout
+  end
+
+  def order_create_params
     params.require(:order).permit(:offering_id, purchases_attributes: :product_id)
+  end
+
+  def order_update_params
+    params.require(:order).permit(answers_attributes: [:id, :question_id, :value])
   end
 end
