@@ -131,8 +131,12 @@
       <div class="grid-4">
         <p style="text-align: right;">
           <small style="color: #999;">
+            <% if current_user.present? %>
             Not <%= current_user.try(:first_name) %>?
             <a href="<%= logout_path %>">Log out</a>.
+            <% else %>
+            <a href="<%= login_url %>">Login</a> to access a previous registraton.
+            <% end %>
           </small>
         </p>
 

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :authenticate!
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
@@ -18,6 +17,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate!
     authentication.perform or render_error_page(401)
+  end
+
+  def try_authentication
+    authenticate! if current_user
   end
 
   def authentication

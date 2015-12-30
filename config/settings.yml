@@ -9,6 +9,9 @@ banner:
 cas:
   url: "https://login.biola.edu/cas"
 
+accounts:
+  create_url: "https://accounts.biola.edu/create"
+
 touch_net:
   production: # when nil will use Rails.env
 

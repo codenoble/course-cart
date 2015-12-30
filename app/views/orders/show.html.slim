@@ -18,9 +18,9 @@
 h2 Registrant Information
 dl.dl-horizontal.lead style="font-size: 15px;"
   dt Name:
-  dd = current_user.name
+  dd = @order.user.try(:name).presence || 'Unknown'
   dt Email:
-  dd = current_user.email
+  dd = @order.user.try(:email).presence || 'Unknown'
 
 h3 Questions
 dl.dl-horizontal
@@ -46,7 +46,7 @@ table
       td = number_to_currency(@order.total)
 
 div style="text-align: right"
-  - if @order.open? && !params[:cancelled]
+  - if @upay.present?
     span>
       - if @order.questions?
         = link_to 'Back', [:edit, @order], class: 'btn btn-default'
@@ -58,6 +58,9 @@ div style="text-align: right"
       - @upay_parameters.each do |name, value|
         input type="hidden" name=name value=value
       button type="submit" class="btn btn-purple" Finalize Registration
-
+  - elsif current_user.blank?
+    p Please login or create an account to continue
+    =' link_to 'Create Account', create_account_url, class: 'btn btn-purple'
+    = link_to 'Login', login_url, class: 'btn btn-default'
   - elsif @order.cancelled? || params[:cancelled]
     = link_to 'Back', @order.offering, class: 'btn btn-default'

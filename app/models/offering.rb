@@ -39,6 +39,10 @@ class Offering
     period.nil? || period == (nil..nil) || period.cover?(Time.now)
   end
 
+  def order_for(user)
+    Order.uncancelled.where(offering: self, user: user).first
+  end
+
   alias :to_s :name
 
   private

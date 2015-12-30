@@ -11,8 +11,13 @@ class OfferingsController < ApplicationController
 
     render_error_page(404) and return if @offering.nil?
 
-    @order = Order.find_or_initialize_by(user: current_user, offering: @offering, cancelled_at: nil)
     @layout = @offering.layout
+
+    @order = if current_user.present?
+      Order.find_or_initialize_by(user: current_user, offering: @offering, cancelled_at: nil)
+    else
+      Order.new(offering: @offering, cancelled_at: nil)
+    end
 
     if @order.persisted?
       redirect_to @order

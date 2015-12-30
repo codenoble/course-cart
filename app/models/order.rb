@@ -17,8 +17,8 @@ class Order
 
   before_validation :set_offering
 
-  validates :user, presence: true
-  validates :offering, presence: true, uniqueness: {scope: :user, conditions: -> { where(cancelled_at: nil) }}
+  validates :offering, presence: true
+  validates :offering, uniqueness: {scope: :user, conditions: -> { where(cancelled_at: nil) }}, if: :user?
   validates :purchases, length: { minimum: 1, message: 'is empty. Please select at least one product.'}
   validates :cancelled_at, absence: {:if => -> order { order.complete? }}
   validate :offering_open, on: :create
@@ -66,10 +66,18 @@ class Order
     !complete? && !cancelled?
   end
 
+  def payable?
+    open? && user?
+  end
+
   alias :cancelled? :cancelled_at?
 
   def complete?
-    !!payment.try(:successful?)
+    !incomplete?
+  end
+
+  def incomplete?
+    !payment.try(:successful?)
   end
 
   def pending_payment?
