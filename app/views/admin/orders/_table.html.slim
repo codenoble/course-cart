@@ -12,7 +12,11 @@ table.table.table-striped.table-hover.table-responsive
     - orders.each do |order|
       tr
         td = link_to fa_icon('link'), admin_order_path(order)
-        td = link_to order.user.name, [:admin, order.user]
+        td
+          - if order.user?
+            = link_to order.user.name, [:admin, order.user]
+          - else
+            | Anonymous
         td = order.offering.name
         td
           small = order.purchases.map(&:product).to_sentence

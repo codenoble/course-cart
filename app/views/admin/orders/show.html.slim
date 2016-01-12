@@ -13,18 +13,25 @@
         p.alert.alert-warning Order was cancelled on #{@order.cancelled_at}
 
       .panel.panel-default
-        .panel-heading
-          = link_to @order.user.name, [:admin, @order.user]
-        .panel-body
-          img.img-thumbnail.pull-left src=@order.user.photo_url
+        - if @order.user?
+          .panel-heading
+            = link_to @order.user.name, [:admin, @order.user]
+          .panel-body
+            - if @order.user.photo_url.present?
+              img.img-thumbnail.pull-left src=@order.user.photo_url
 
-          dl.dl-horizontal.pull-left
-            dt ID #:
-            dd = @order.user.id_number
-            dt Email:
-            dd = mail_to @order.user.email
-            dt Roles:
-            dd = Array(@order.user.roles).to_sentence
+            dl.dl-horizontal.pull-left
+              dt ID #:
+              dd = content_or @order.user.id_number
+              dt Email:
+              dd = mail_to @order.user.email.presence
+              dt Roles:
+              dd = content_or Array(@order.user.roles).to_sentence, or: 'none'
+        - else
+          .panel-heading
+            | Anonymous User
+          .panel-body
+            .text-muted No data
 
       .panel.panel-default
         .panel-heading

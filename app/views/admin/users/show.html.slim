@@ -4,15 +4,16 @@
       .page-header
         h2 = @user.name
 
-      img.img-thumbnail.pull-left src=@user.photo_url
+      - if @user.photo_url.present?
+        img.img-thumbnail.pull-left src=@user.photo_url
 
       dl.dl-horizontal.pull-left
         dt ID #:
-        dd = @user.id_number
+        dd = content_or @user.id_number
         dt Email:
         dd = mail_to @user.email
         dt Roles:
-        dd = Array(@user.roles).to_sentence
+        dd = content_or Array(@user.roles).to_sentence, or: 'none'
 
       .clearfix
 
