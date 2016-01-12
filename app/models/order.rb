@@ -47,6 +47,8 @@ class Order
       'Paid'
     elsif cancelled?
       'Cancelled'
+    elsif unclaimed?
+      'Unclaimed'
     elsif pending_payment?
       'Pending Payment'
     end
@@ -57,6 +59,8 @@ class Order
       :success
     elsif cancelled?
       :warning
+    elsif unclaimed?
+      :primary
     elsif pending_payment?
       :info
     end
@@ -78,6 +82,12 @@ class Order
 
   def incomplete?
     !payment.try(:successful?)
+  end
+
+  alias :claimed? :user?
+
+  def unclaimed?
+    !claimed?
   end
 
   def pending_payment?
