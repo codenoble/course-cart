@@ -104,13 +104,14 @@ class Order
 
   def to_csv
     {
-      name: user.name,
-      id: user.id_number,
-      email: user.email,
-      courses: purchases.map{|p| p.product.name},
+      name: user.try(:name).presence || 'anonymous',
+      id: user.try(:id_number).presence || 'N/A',
+      email: user.try(:email).presence || 'unknown',
+      courses: purchases.map{|p| p.product.name}.join('|'),
       last_change: updated_at,
       status: status,
-      offering: offering.name
+      offering: offering.name,
+      answers: answers.map{|a| "#{a.question.name}=#{a.value}"}.join('|')
     }
   end
 

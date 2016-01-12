@@ -27,7 +27,7 @@ class Admin::OrdersController < Admin::ApplicationController
   private
   def csv(orders)
     CSV.generate do |csv|
-      column_names = [:name, :id, :email, :courses, :last_change, :status, :offering]
+      column_names = [:name, :id, :email, :courses, :last_change, :status, :offering, :answers]
       csv << column_names
       orders.each do |o|
         csv << o.to_csv.values_at(*column_names)
