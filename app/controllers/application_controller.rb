@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action :try_cas_gateway_login
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
@@ -14,6 +15,15 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def try_cas_gateway_login
+    unless current_user.present? || session[:gateway_login_attempted] || Rails.env.test?
+      cas_server = RackCAS::Server.new(Settings.cas.url)
+
+      session[:gateway_login_attempted] = true
+      redirect_to cas_server.login_url(request.url, gateway: true).to_s
+    end
+  end
 
   def authenticate!
     authentication.perform or render_error_page(401)
