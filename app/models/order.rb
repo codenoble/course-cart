@@ -98,6 +98,16 @@ class Order
     purchases.map { |p| p.product.price }.sum
   end
 
+  def auto_fill(answers_hash)
+    fuzzy_hash = FuzzyLookup.new(answers_hash)
+
+    questions.each do |question|
+      if answers.where(question_id: question.id).none?
+        answers.build question_id: question.id, value: fuzzy_hash[question.name]
+      end
+    end
+  end
+
   def to_s
     created_at.to_s
   end
@@ -132,8 +142,6 @@ class Order
   def validations_from_offering
     validate_from_hash offering.order_validators
   end
-
-  private
 
   def validate_from_hash(validators_hash)
     validators_hash = Hash(validators_hash)

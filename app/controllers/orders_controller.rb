@@ -55,11 +55,7 @@ class OrdersController < ApplicationController
 
     authorize @order
 
-    @order.questions.each do |question|
-      if @order.answers.where(question_id: question.id).none?
-        @order.answers.build question_id: question.id
-      end
-    end
+    @order.auto_fill CasAuthentication.new(session).attributes
   end
 
   def update

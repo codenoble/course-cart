@@ -24,6 +24,18 @@ class CasAuthentication
     end
   end
 
+  def attributes
+    {
+      id_number:    extra_attr(:employeeId),
+      first_name:   extra_attr(:eduPersonNickname),
+      last_name:    extra_attr(:sn),
+      email:        extra_attr(:mail),
+      photo_url:    extra_attr(:url),
+      entitlements: extra_attrs(:eduPersonEntitlement),
+      affiliations: extra_attrs(:eduPersonAffiliation)
+    }
+  end
+
   private
 
   attr_reader :session
@@ -49,14 +61,7 @@ class CasAuthentication
   end
 
   def update_extra_attributes!
-    user.id_number    = extra_attr(:employeeId)
-    user.first_name   = extra_attr(:eduPersonNickname)
-    user.last_name    = extra_attr(:sn)
-    user.email        = extra_attr(:mail)
-    user.photo_url    = extra_attr(:url)
-    user.entitlements = extra_attrs(:eduPersonEntitlement)
-    user.affiliations = extra_attrs(:eduPersonAffiliation)
-    user.save
+    user.update attributes
   end
   alias :create_user! :update_extra_attributes!
 
