@@ -15,6 +15,6 @@ module CourseCart
 
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/validators #{config.root}/lib/warners)
     config.i18n.default_locale = :en
-    config.assets.precompile += %w( biola/header.css biola/header.js )
+    config.assets.precompile += %w( biola/header.css biola/header.js default_layout.css )
   end
 end

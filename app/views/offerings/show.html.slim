@@ -1,23 +1,31 @@
-- if current_user.try(:name).present?
-  h2 = "Hello " + current_user.name
-p.lead = "Thank you for your interest in " + @offering.name
-- if @order.preflight_passed?
-  = form_for(@order) do |f|
-    h3 Registration
-    = f.hidden_field :offering_id
-    ul.products
-      = f.fields_for(:purchases, @order.purchases.sort_by{|p| p.product.name}) do |fields|
-        li style="list-style: none;"
-          =' fields.check_box :product_id, {checked: fields.object.slug == params[:product], disabled: fields.object.product.sold_out?}, fields.object.product_id.to_s, nil
-          = fields.label :product_id do
-            strong = fields.object.product.name
-            br
-            = fields.object.product.description.html_safe
+.page-segment
+  .container
+    .row
+      .col-sm-12
+        .welcome
+          - if current_user.try(:name).present?
+            h4
+              strong Hello #{current_user.name}
+          p Thank you for your interest in #{@offering.name}
 
-    div style="text-align: right"
-      button type="submit" class="btn btn-default" Continue
+        hr
 
-- else
-  h2 Unable to continue
-  - @order.errors.full_messages.each do |message|
-    p.error = message
+        - if @order.preflight_passed?
+          = form_for(@order) do |f|
+            h3 Registration
+            = f.hidden_field :offering_id
+            ul.products.list-group
+              = f.fields_for(:purchases, @order.purchases.sort_by{|p| p.product.name}) do |fields|
+                li.list-group-item
+                  => fields.check_box :product_id, {checked: fields.object.slug == params[:product], disabled: fields.object.product.sold_out?}, fields.object.product_id.to_s, nil
+                  = fields.label :product_id do
+                    strong => fields.object.product.name
+                  .description = fields.object.product.description.html_safe
+
+            div.text-right
+              button type="submit" class="btn btn-primary" Continue
+
+        - else
+          h2 Unable to continue
+          - @order.errors.full_messages.each do |message|
+            p.error = message

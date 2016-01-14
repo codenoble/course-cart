@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :try_cas_gateway_login
+  before_action :try_cas_gateway_login, :check_authentication_param
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
@@ -22,6 +22,13 @@ class ApplicationController < ActionController::Base
 
       session[:gateway_login_attempted] = true
       redirect_to cas_server.login_url(request.url, gateway: true).to_s
+    end
+  end
+
+  def check_authentication_param
+    if params[:login] == 'true' && current_user.nil?
+      render_error_page 401
+      false
     end
   end
 

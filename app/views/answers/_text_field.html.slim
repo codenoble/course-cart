@@ -1,4 +1,4 @@
-.field-group class=('required' if f.object.required?)
-  .hidden = f.hidden_field :question_id
-  .label = f.label :value, f.object.name
-  .field = f.text_field :value
+.form-group class=('required' if f.object.required?)
+  = f.hidden_field :question_id
+  = f.label :value, f.object.name
+  = f.text_field :value, class: 'form-control'

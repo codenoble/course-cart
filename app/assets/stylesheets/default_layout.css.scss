@@ -1,0 +1,33 @@
+/*
+ *= require_self
+ */
+
+@import "biola-frontend-toolkit";
+
+.site-title {
+  font-weight: normal;
+  margin-top: 10px;
+  a { text-decoration: none; }
+  a:hover { color: white; text-decoration: underline; }
+}
+
+.field_with_errors .form-control{
+  color: #CC1122;
+  border-color: #CC1122;
+}
+
+.page-segment {
+  padding:40px 0;
+}
+
+.segment-bold {
+  background-color: #CC1122;
+  color: #DDD;
+  a {
+    color: #FFF;
+    text-decoration: none;
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+  }
+}

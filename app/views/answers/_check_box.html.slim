@@ -1,4 +1,4 @@
-.field-group
-  .hidden = f.hidden_field :question_id
-  .label = f.label :value, f.object.name
-  .field = f.check_box :value, {}, 'Yes', 'No'
+.form-group class=('required' if f.object.required?)
+  = f.hidden_field :question_id
+  => f.check_box :value, {}, 'Yes', 'No'
+  = f.label :value, f.object.name

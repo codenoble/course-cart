@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.7.1'
 
 gem 'biola_deploy'
+gem 'biola_frontend_toolkit'
 gem 'blazing'
 gem 'bootstrap-sass'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'

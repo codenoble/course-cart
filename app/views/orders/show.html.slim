@@ -1,66 +1,70 @@
-- @order.warnings.each do |message|
-  p.error = message
+.page-segment
+  .container
+    .row
+      .col-sm-12
+        - @order.warnings.each do |message|
+          .alert.alert-warning = message
 
-- if @order.open?
-  .lead style="font-size: 15px;" Please confirm your registration below.
-- elsif @order.complete?
-  .lead style="font-size: 15px;" We’re excited that you have decided to join us for this online education experience!
+        - if @order.open?
+          .lead Please confirm your registration below.
+        - elsif @order.complete?
+          .lead We're excited that you have decided to join us for this online education experience!
 
-- if @order.complete?
-  p.info Your order was completed on #{@order.payment.succeeded_at}
+        - if @order.complete?
+          .alert.alert-info Your order was completed on #{@order.payment.succeeded_at}
 
-- elsif @order.cancelled?
-  p.warning Your order was cancelled on #{@order.cancelled_at}
+        - elsif @order.cancelled?
+          .alert.alert-warning Your order was cancelled on #{@order.cancelled_at}
 
-- elsif params[:cancelled]
-  p.warning Your order is being cancelled
+        - elsif params[:cancelled]
+          .alert.alert-warning Your order is being cancelled
 
-h2 Registrant Information
-dl.dl-horizontal.lead style="font-size: 15px;"
-  dt Name:
-  dd = @order.user.try(:name).presence || 'Unknown'
-  dt Email:
-  dd = @order.user.try(:email).presence || 'Unknown'
+        h2 Registrant Information
+        dl.dl-horizontal
+          dt Name:
+          dd = @order.user.try(:name).presence || 'Unknown'
+          dt Email:
+          dd = @order.user.try(:email).presence || 'Unknown'
 
-h3 Questions
-dl.dl-horizontal
-  - @order.answers.each do |answer|
-    dt = answer.name
-    dd = answer.value
+        h3 Questions
+        dl.dl-horizontal
+          - @order.answers.each do |answer|
+            dt = answer.name
+            dd = answer.value
 
-h2 Course Price
+        h2 Course Price
 
-table
-  thead
-    tr
-      th Product
-      th Price
-  tbody
-    - @order.purchases.each do |purchase|
-      tr
-        td = purchase.product
-        td = number_to_currency(purchase.product.price)
-  tfoot
-    tr
-      th Total:
-      td = number_to_currency(@order.total)
+        table.table.table-striped
+          thead
+            tr
+              th Product
+              th Price
+          tbody
+            - @order.purchases.each do |purchase|
+              tr
+                td = purchase.product
+                td = number_to_currency(purchase.product.price)
+          tfoot
+            tr
+              th.text-right Total:
+              td = number_to_currency(@order.total)
 
-div style="text-align: right"
-  - if @upay.present?
-    span>
-      - if @order.questions?
-        = link_to 'Back', [:edit, @order], class: 'btn btn-default'
-      - else
-        = form_for @order, method: :delete
-          button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
+        div.text-right
+          - if @upay.present?
+            span>
+              - if @order.questions?
+                = link_to 'Back', [:edit, @order], class: 'btn btn-default'
+              - else
+                = form_for @order, method: :delete
+                  button type="submit" class="btn btn-default" style="margin-right: 10px;" Back
 
-    form action=@upay.url method="post" style="display: inline;"
-      - @upay_parameters.each do |name, value|
-        input type="hidden" name=name value=value
-      button type="submit" class="btn btn-purple" Finalize Registration
-  - elsif current_user.blank?
-    p Please login or create an account to continue
-    =' link_to 'Create Account', create_account_url, class: 'btn btn-purple'
-    = link_to 'Login', login_url, class: 'btn btn-default'
-  - elsif @order.cancelled? || params[:cancelled]
-    = link_to 'Back', @order.offering, class: 'btn btn-default'
+            form action=@upay.url method="post" style="display: inline;"
+              - @upay_parameters.each do |name, value|
+                input type="hidden" name=name value=value
+              button type="submit" class="btn btn-primary" Finalize Registration
+          - elsif current_user.blank?
+            p Please login or create an account to continue
+            =' link_to 'Create Account', create_account_url, class: 'btn btn-purple'
+            = link_to 'Login', login_url, class: 'btn btn-default'
+          - elsif @order.cancelled? || params[:cancelled]
+            = link_to 'Back', @order.offering, class: 'btn btn-default'

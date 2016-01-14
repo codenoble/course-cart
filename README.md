@@ -34,7 +34,7 @@ Edit `config/blazing.rb`, `config/mongoid.yml`, `config/settings.local.yml` and 
 TouchNet uPay Store Configuration
 ---------------------------------
 
-TODO
+TODO: passed_amount_validation_key, posting_key, posting_url
 
 
 Testing
