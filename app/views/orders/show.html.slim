@@ -64,7 +64,7 @@
               button type="submit" class="btn btn-primary" Finalize Registration
           - elsif current_user.blank?
             p Please login or create an account to continue
-            =' link_to 'Create Account', create_account_url, class: 'btn btn-purple'
+            =' link_to 'Create Account', create_account_url, class: 'btn btn-primary'
             = link_to 'Login', login_url, class: 'btn btn-default'
           - elsif @order.cancelled? || params[:cancelled]
             = link_to 'Back', @order.offering, class: 'btn btn-default'
