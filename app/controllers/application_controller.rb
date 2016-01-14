@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
+  rescue_from Pundit::NotAuthorizedError, with: :render_forbidden_page
+
   layout -> { (@layout || :application).to_s }
 
   helper_method :current_user
@@ -42,6 +44,10 @@ class ApplicationController < ActionController::Base
 
   def authentication
     @authentication ||= CasAuthentication.new(session)
+  end
+
+  def render_forbidden_page
+    render_error_page 403
   end
 
   def render_error_page(status)
