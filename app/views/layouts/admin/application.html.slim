@@ -27,8 +27,9 @@ html
             a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
               #profile-img style="background-image: url('#{current_user.photo_url}')"
             ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
-              li = link_to "#{fa_icon('user')} My Account".html_safe, '#'
-              li = link_to "#{fa_icon('power-off')} Logout".html_safe, '#'
+              li = link_to logout_path do
+                = fa_icon 'power-off'
+                | Logout
 
           #apps-list.dropdown
             a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
