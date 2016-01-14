@@ -2,7 +2,9 @@ h2 Registration Questions
 
 - if current_user.nil?
   .alert.alert-info
-    =' link_to 'Login', login_url
+    => link_to 'Login', login_url
+    ' or
+    => link_to 'create an account', create_account_url
     | to auto-fill the fields below
 
 p Please complete the following questions to continue your registration.
