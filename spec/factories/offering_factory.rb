@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :offering do
-    name { Faker::Commerce.department }
+    sequence(:name) { |n| "Faker::Commerce.department #{n}" }
   end
 end
