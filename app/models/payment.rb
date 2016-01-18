@@ -13,7 +13,7 @@ class Payment
 
   validates :uuid, presence: true
 
-  before_validation :generate_uuid
+  before_validation :set_uuid
 
   # These attributes map to TouchNet uPay parameters
   alias_attribute :ext_trans_id, :uuid
@@ -30,9 +30,13 @@ class Payment
     status == :success
   end
 
+  def self.generate_uuid
+    SecureRandom.uuid
+  end
+
   private
 
-  def generate_uuid
-    self.uuid = SecureRandom.uuid if uuid.blank?
+  def set_uuid
+    self.uuid = self.class.generate_uuid if uuid.blank?
   end
 end

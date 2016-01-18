@@ -12,7 +12,7 @@ describe Order do
 
   context 'with failing Offering#order_validators' do
     let(:offering_attrs) { {order_validators: {'GrumpyCatValidator' => nil}} }
-    its('errors.full_messages') { should eql ['NO!'] }
+    it { expect(subject.errors.full_messages).to eql ['NO!'] }
   end
 
   context 'with passing Offering#order_validators' do

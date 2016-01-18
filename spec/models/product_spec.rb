@@ -11,14 +11,14 @@ describe Product do
     context 'when #available is nil' do
       let(:attrs) { {available: nil} }
 
-      its(:sold_out?) { should be_false }
+      it { expect(subject.sold_out?).to be false }
     end
 
     context 'with less than #available orders' do
       let(:attrs) { {available: 2} }
       before { create :purchase, product: product }
 
-      its(:sold_out?) { should be_false }
+      it { expect(subject.sold_out?).to be false }
     end
 
     context 'with same as #available orders' do
@@ -26,7 +26,7 @@ describe Product do
       let!(:purchase) { create :purchase, product: product }
       let!(:payment) { create :payment, :successful, order: purchase.order }
 
-      its(:sold_out?) { should be_true }
+      it { expect(subject.sold_out?).to be true }
     end
   end
 end

@@ -12,7 +12,6 @@ gem 'font-awesome-rails'
 gem 'jquery-rails', '~> 3.1.3'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'mongoid', '~> 4.0'
-gem 'mongoid-rspec'
 gem 'mongoid_slug'
 gem 'newrelic_rpm'
 gem 'pinglish'
@@ -32,7 +31,6 @@ group :development, :staging, :production do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'pry'
 end
 
@@ -43,8 +41,12 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'factory_girl'
   gem 'faker'
+  gem 'launchy'
+  gem 'mongoid-rspec'
+  gem 'rspec-rails'
 end
 
 group :staging, :production do
