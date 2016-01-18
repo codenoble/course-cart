@@ -20,7 +20,7 @@
                   => fields.check_box :product_id, {checked: fields.object.slug == params[:product], disabled: fields.object.product.sold_out?}, fields.object.product_id.to_s, nil
                   = fields.label :product_id do
                     strong => fields.object.product.name
-                  .description = fields.object.product.description.html_safe
+                  .description = fields.object.product.try(:description).try(:html_safe)
 
             div.text-right
               button type="submit" class="btn btn-primary" Continue
