@@ -150,7 +150,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (2.14.0)
-    pundit (0.2.3)
+    pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.5.5)
     rack-accept (0.4.5)

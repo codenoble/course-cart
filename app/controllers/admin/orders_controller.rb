@@ -3,7 +3,7 @@ class Admin::OrdersController < Admin::ApplicationController
   require 'csv'
 
   def index
-    @orders = admin_policy_scope(Order)
+    @orders = policy_scope([:admin, Order])
     @orders = @orders.where(offering_id: params[:offering]) if params[:offering]
     @orders = @orders.cancelled if params[:status] == 'cancelled'
     @orders = @orders.pending_payment if params[:status] == "pending_payment"
@@ -21,7 +21,7 @@ class Admin::OrdersController < Admin::ApplicationController
   def show
     @order = Order.find(params[:id])
 
-    admin_authorize @order
+    authorize [:admin, @order]
   end
 
   private

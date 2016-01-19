@@ -3,7 +3,8 @@ class ApplicationPolicy
 
   def initialize(user, record)
     @user = user
-    @record = record
+    # This is a temporary workaround for namespaces an seen here: https://github.com/elabs/pundit/issues/351
+    @record = record.is_a?(Array) ? record.last : record
   end
 
   def index?
@@ -39,7 +40,8 @@ class ApplicationPolicy
 
     def initialize(user, scope)
       @user = user
-      @scope = scope
+      # This is a temporary workaround for namespaces an seen here: https://github.com/elabs/pundit/issues/351
+      @scope = scope.is_a?(Array) ? scope.last : scope
     end
 
     def resolve
