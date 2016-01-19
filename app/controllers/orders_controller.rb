@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     if current_user && !@order.user? && current_user.persisted?
       if prev_order = @order.offering.order_for(current_user)
         @order.update! cancelled_at: Time.now
-        redirect_to prev_order, alert: "The following order already exists for your account. You cannot order it again."
+        redirect_to order_path(prev_order), alert: "The following order already exists for your account. You cannot order it again."
       else
         @order.update! user: current_user
       end
