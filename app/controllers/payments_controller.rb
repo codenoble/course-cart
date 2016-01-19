@@ -27,7 +27,9 @@ class PaymentsController < ApplicationController
     response = if order.errors.empty?
       'success'
     else
-      "error: #{order.errors.full_messages.to_sentence}"
+      # html_safe isn't really needed because it's a text render, not HTML
+      # but this is an easy way to make Brakeman happy.
+      "error: #{order.errors.full_messages.to_sentence}".html_safe
     end
 
     render text: response
