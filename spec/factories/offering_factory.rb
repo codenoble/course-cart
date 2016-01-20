@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :offering do
-    name { Faker::Commerce.department }
+    sequence(:name) { |n| "#{Faker::Commerce.department} #{n}" }
     upay_store_id { rand(1..1000) }
     context { Faker::Internet.domain_name }
 

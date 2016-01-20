@@ -274,7 +274,7 @@ DEPENDENCIES
   pry
   puma
   pundit
-  rack-cas (>= 0.9.2)
+  rack-cas
   rack-ssl
   rails (= 4.1.14)
   rails_config
